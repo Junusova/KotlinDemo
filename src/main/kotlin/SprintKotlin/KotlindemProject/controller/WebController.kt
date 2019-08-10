@@ -4,16 +4,17 @@ import SprintKotlin.KotlindemProject.model.Customer
 import SprintKotlin.KotlindemProject.repo.CustomerRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.PathVariable
+import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-class WebController {
+@RequestMapping("/api/customers")
+class WebController(
+  private val repository: CustomerRepository
+) {
 
-  @Autowired
-  lateinit var repository: CustomerRepository
-
-  @RequestMapping("/save")
+  @PostMapping("/save")
   fun save(): String {
     repository.save(Customer("Jack", "Smith"))
     repository.save(Customer("Adam", "Johnson"))

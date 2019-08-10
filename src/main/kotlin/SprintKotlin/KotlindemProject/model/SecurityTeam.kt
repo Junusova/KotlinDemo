@@ -1,10 +1,12 @@
 package SprintKotlin.KotlindemProject.model
 
-import javax.persistence.*
+import javax.persistence.Column
+import javax.persistence.Entity
+import javax.persistence.Table
 
 @Entity
-@Table(name = "customer")
-data class Customer(
+@Table(name = "bodyguard")
+data class SecurityTeam (
 
   @Column(name = "firstName")
   val firstName: String,

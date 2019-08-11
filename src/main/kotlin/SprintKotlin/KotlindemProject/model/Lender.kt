@@ -1,11 +1,13 @@
 package SprintKotlin.KotlindemProject.model
 
 import java.math.BigDecimal
-import javax.persistence.*
+import javax.persistence.Column
+import javax.persistence.Entity
+import javax.persistence.Table
 
 @Entity
-@Table(name = "customer")
-data class Customer(
+@Table(name = "lender")
+data class Lender(
 
   @Column(name = "firstName")
   val firstName: String,

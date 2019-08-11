@@ -26,4 +26,5 @@ data class SecurityTeam (
 
   @Column(name = "category")
   val category: String
+
 ) : BaseEntity()

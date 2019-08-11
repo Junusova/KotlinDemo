@@ -2,10 +2,7 @@ package SprintKotlin.KotlindemProject.controller
 
 import SprintKotlin.KotlindemProject.model.Customer
 import SprintKotlin.KotlindemProject.repo.CustomerRepository
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 import java.math.BigDecimal
 
 @RestController
@@ -23,6 +20,22 @@ class CustomerWebController(
     repository.save(Customer("Peter", "Davis", 15, BigDecimal.valueOf(44.56),  "Test description", "test category"))
 
     return "Done"
+  }
+
+
+  @PutMapping("/{id}")
+  fun update(
+    @PathVariable id: Long,
+    @RequestBody customer: Customer)
+  {
+    repository.save(customer)
+  }
+
+
+  @DeleteMapping("/{id}")
+  fun delete(@PathVariable id: Long)
+  {
+    repository.deleteById(id)
   }
 
   @RequestMapping("/findAll")

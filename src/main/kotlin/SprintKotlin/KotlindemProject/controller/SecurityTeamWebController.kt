@@ -1,12 +1,8 @@
 package SprintKotlin.KotlindemProject.controller
 
-import SprintKotlin.KotlindemProject.model.Lender
-import SprintKotlin.KotlindemProject.repo.LenderRepository
+import SprintKotlin.KotlindemProject.model.SecurityTeam
 import SprintKotlin.KotlindemProject.repo.SecurityTeamRepository
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 import java.math.BigDecimal
 
 
@@ -19,7 +15,7 @@ class SecurityTeamWebController (
 
   @PostMapping("/save")
   fun save(): String {
-    repository.save(Lender("Jack", "Smith", 15, BigDecimal.valueOf(15.63),  "Test description", "test category"))
+    repository.save(SecurityTeam("Jack", "Smith", 15, BigDecimal.valueOf(15.63),  "Test description", "test category"))
     return "Done"
   }
 
@@ -53,4 +49,19 @@ class SecurityTeamWebController (
   @RequestMapping("findByCategory/{category}")
   fun  findByCategory(@PathVariable category: String)
       = repository.findByCategory(category)
+
+  @PutMapping("/{id}")
+  fun update(
+    @PathVariable id: Long,
+    @RequestBody securityTeam: SecurityTeam
+  )
+  {
+    repository.save(securityTeam)
+  }
+
+  @DeleteMapping("/{id}")
+  fun delete(@PathVariable id: Long)
+  {
+    repository.deleteById(id)
+  }
 }

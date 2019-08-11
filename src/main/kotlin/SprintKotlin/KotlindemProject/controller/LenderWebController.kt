@@ -1,11 +1,9 @@
 package SprintKotlin.KotlindemProject.controller
 
+import SprintKotlin.KotlindemProject.model.Customer
 import SprintKotlin.KotlindemProject.model.Lender
 import SprintKotlin.KotlindemProject.repo.LenderRepository
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 import java.math.BigDecimal
 
 
@@ -51,4 +49,21 @@ class LenderWebController(
   @RequestMapping("findByCategory/{category}")
   fun  findByCategory(@PathVariable category: String)
       = repository.findByCategory(category)
+
+
+  @PutMapping("/{id}")
+  fun update(
+    @PathVariable id: Long,
+    @RequestBody lender: Lender
+  )
+  {
+    repository.save(lender)
+  }
+
+
+  @DeleteMapping("/{id}")
+  fun delete(@PathVariable id: Long)
+  {
+    repository.deleteById(id)
+  }
 }

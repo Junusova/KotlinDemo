@@ -1,17 +1,17 @@
 package SprintKotlin.KotlindemProject.repo
 
-import SprintKotlin.KotlindemProject.model.Lender
+import SprintKotlin.KotlindemProject.model.SecurityTeam
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.stereotype.Repository
 import java.math.BigDecimal
 
 
 @Repository
-interface SecurityTeamRepository : JpaRepository<Lender, Long> {
-  fun findByLastName(lastName: String): Iterable<Lender>
-  fun findByFirstName(firstName: String): Iterable<Lender>
-  fun findByAmount(amount: Int): Iterable<Lender>
-  fun findByPrice(price: BigDecimal): Iterable<Lender>
-  fun findByDescription(description: String): Iterable<Lender>
-  fun findByCategory(category: String): Iterable<Lender>
+interface SecurityTeamRepository : JpaRepository<SecurityTeam, Long> {
+  fun findByLastName(lastName: String): Iterable<SecurityTeam>
+  fun findByFirstName(firstName: String): Iterable<SecurityTeam>
+  fun findByAmount(amount: Int): Iterable<SecurityTeam>
+  fun findByPrice(price: BigDecimal): Iterable<SecurityTeam>
+  fun findByDescription(description: String): Iterable<SecurityTeam>
+  fun findByCategory(category: String): Iterable<SecurityTeam>
 }

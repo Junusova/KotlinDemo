@@ -1,5 +1,5 @@
 How to start project:
-Clone dental repository:  git clone https://github.com/Junusova/KotlinDemo.git
+Clone project repository:  git clone https://github.com/Junusova/KotlinDemo.git
 Checkout from origin/dev branch
 
 On the Next step in application.properties file set

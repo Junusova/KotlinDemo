@@ -1,6 +1,5 @@
 package SprintKotlin.KotlindemProject.controller
 
-import SprintKotlin.KotlindemProject.model.Customer
 import SprintKotlin.KotlindemProject.model.Lender
 import SprintKotlin.KotlindemProject.repo.LenderRepository
 import org.springframework.web.bind.annotation.*
@@ -16,7 +15,7 @@ class LenderWebController(
   @PostMapping("/save")
   fun save(): String {
     repository.save(Lender("Jack", "Smith", 15, BigDecimal.valueOf(15.63),  "Test description", "test category"))
-    return "Done"
+    return "Lenders were created successfully"
   }
 
   @RequestMapping("/findAll")

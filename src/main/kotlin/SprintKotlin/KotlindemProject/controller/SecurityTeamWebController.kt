@@ -16,7 +16,7 @@ class SecurityTeamWebController (
   @PostMapping("/save")
   fun save(): String {
     repository.save(SecurityTeam("Jack", "Smith", 15, BigDecimal.valueOf(15.63),  "Test description", "test category"))
-    return "Done"
+    return "Guadrs were created successfully"
   }
 
   @RequestMapping("/findAll")

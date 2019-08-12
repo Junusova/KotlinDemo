@@ -19,7 +19,7 @@ class CustomerWebController(
     repository.save(Customer("David", "Williams", 85, BigDecimal.valueOf(55.11),  "Test description", "test category"))
     repository.save(Customer("Peter", "Davis", 15, BigDecimal.valueOf(44.56),  "Test description", "test category"))
 
-    return "Done"
+    return "Customer was successfully created"
   }
 
 

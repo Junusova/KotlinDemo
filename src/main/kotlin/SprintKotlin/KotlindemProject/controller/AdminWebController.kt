@@ -18,7 +18,7 @@ class AdminWebController (
       repository.save(Admin("Max", "Allan", 85, BigDecimal.valueOf(55.11),  "Test description", "test category"))
       repository.save(Admin("Jimmy", "Fallon", 15, BigDecimal.valueOf(44.56),  "Test description", "test category"))
 
-      return "Done"
+      return "Admins was created successfully"
     }
 
     @RequestMapping("/findAll")
@@ -63,8 +63,8 @@ class AdminWebController (
 
 
   @DeleteMapping("/{id}")
-  fun delete(@PathVariable id: Long)
-  {
+  fun delete(@PathVariable id: Long): String {
     repository.deleteById(id)
+    return "Admin deleted  successfully"
   }
   }

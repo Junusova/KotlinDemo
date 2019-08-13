@@ -38,34 +38,34 @@ class CustomerWebController(
     repository.deleteById(id)
   }
 
-  @RequestMapping("/findAll")
+  @GetMapping("/findAll")
   fun findAll() = repository.findAll()
 
-  @RequestMapping("/findById/{id}")
+  @GetMapping("/findById/{id}")
   fun findById(@PathVariable id: Long)
       = repository.findById(id)
 
-  @RequestMapping("findByLastName/{firstName}")
+  @GetMapping("findByLastName/{firstName}")
   fun findByLastName(@PathVariable lastName: String)
       = repository.findByLastName(lastName)
 
-  @RequestMapping("findByFirstName/{lastName}")
+  @GetMapping("findByFirstName/{lastName}")
   fun findByFirstName(@PathVariable firstName: String)
       = repository.findByFirstName(firstName)
 
-  @RequestMapping("findByAmount/{amount}")
+  @GetMapping("findByAmount/{amount}")
   fun  findByAmount(@PathVariable amount: Int)
       = repository.findByAmount(amount)
 
-  @RequestMapping("findByPrice/{price}")
+  @GetMapping("findByPrice/{price}")
   fun  findByPrice(@PathVariable price: BigDecimal)
       = repository.findByPrice(price)
 
-  @RequestMapping("findByDescription/{description}")
+  @GetMapping("findByDescription/{description}")
   fun  findByDescription(@PathVariable description: String)
       = repository.findByDescription(description)
 
-  @RequestMapping("findByCategory/{category}")
+  @GetMapping("findByCategory/{category}")
   fun  findByCategory(@PathVariable category: String)
       = repository.findByCategory(category)
 }

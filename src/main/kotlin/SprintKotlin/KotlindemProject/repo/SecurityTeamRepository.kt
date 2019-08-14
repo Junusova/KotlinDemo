@@ -1,17 +1,22 @@
 package SprintKotlin.KotlindemProject.repo
 
-import SprintKotlin.KotlindemProject.model.SecurityTeam
-import org.springframework.data.jpa.repository.JpaRepository
+import SprintKotlin.KotlindemProject.dto.guard.CreateGuardDto
+import SprintKotlin.KotlindemProject.dto.guard.GuardDto
+import SprintKotlin.KotlindemProject.dto.guard.UpdateGuardDto
 import org.springframework.stereotype.Repository
 import java.math.BigDecimal
 
 
 @Repository
-interface SecurityTeamRepository : JpaRepository<SecurityTeam, Long> {
-  fun findByLastName(lastName: String): Iterable<SecurityTeam>
-  fun findByFirstName(firstName: String): Iterable<SecurityTeam>
-  fun findByAmount(amount: Int): Iterable<SecurityTeam>
-  fun findByPrice(price: BigDecimal): Iterable<SecurityTeam>
-  fun findByDescription(description: String): Iterable<SecurityTeam>
-  fun findByCategory(category: String): Iterable<SecurityTeam>
+interface GuardDtoService {
+  fun create(createGuardDtoDto: CreateGuardDto): GuardDto
+  fun update(updateGuardDtoDto: UpdateGuardDto, id: Long): GuardDto
+  fun findById(id: Long): GuardDto
+  fun findByLastName(lastName: String): GuardDto
+  fun findByFirstName(firstName: String): GuardDto
+  fun findByAmount(amount: Int): GuardDto
+  fun findByPrice(price: BigDecimal): GuardDto
+  fun findByDescription(description: String): GuardDto
+  fun findByCategory(category: String): GuardDto
+  fun delete(id: Long)
 }

@@ -1,17 +1,22 @@
 package SprintKotlin.KotlindemProject.repo
 
-import SprintKotlin.KotlindemProject.model.Customer
-import org.springframework.data.jpa.repository.JpaRepository
+import SprintKotlin.KotlindemProject.dto.customer.CreateCustomerDto
+import SprintKotlin.KotlindemProject.dto.customer.CustomerDto
+import SprintKotlin.KotlindemProject.dto.customer.UpdateCustomerDto
 import org.springframework.stereotype.Repository
 import java.math.BigDecimal
 
 
 @Repository
-interface CustomerRepository : JpaRepository<Customer, Long> {
-  fun findByLastName(lastName: String): Iterable<Customer>
-  fun findByFirstName(firstName: String): Iterable<Customer>
-  fun findByAmount(amount: Int): Iterable<Customer>
-  fun findByPrice(price: BigDecimal): Iterable<Customer>
-  fun findByDescription(description: String): Iterable<Customer>
-  fun findByCategory(category: String): Iterable<Customer>
+interface CustomerDtoService {
+  fun create(createCustomerDto: CreateCustomerDto): CustomerDto
+  fun update(updateCustomerDto: UpdateCustomerDto, id: Long): CustomerDto
+  fun findById(id: Long): CustomerDto
+  fun findByLastName(lastName: String): CustomerDto
+  fun findByFirstName(firstName: String): CustomerDto
+  fun findByAmount(amount: Int): CustomerDto
+  fun findByPrice(price: BigDecimal): CustomerDto
+  fun findByDescription(description: String): CustomerDto
+  fun findByCategory(category: String): CustomerDto
+  fun delete(id: Long)
 }

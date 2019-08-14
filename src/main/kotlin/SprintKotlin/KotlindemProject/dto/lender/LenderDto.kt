@@ -1,8 +1,8 @@
 package SprintKotlin.KotlindemProject.dto.lender
-import org.hibernate.validator.constraints.Email
+import java.math.BigDecimal
 
 data class LenderDto(
-  val id: Long
+  val id: Long,
   val email: String,
   val isActive: Boolean,
   val firstName: String,
@@ -14,8 +14,16 @@ data class LenderDto(
 )
 
 data class CreateLenderDto(
-  @field:Email
   val email: String,
+  val firstName: String,
+  val lastName: String,
+  val amount: Int,
+  val price: BigDecimal,
+  val description: String,
+  val category: String
+)
+
+data class UpdateLenderDto(
   val firstName: String,
   val lastName: String,
   val amount: Int,

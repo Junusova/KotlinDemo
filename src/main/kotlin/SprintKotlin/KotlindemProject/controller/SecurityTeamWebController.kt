@@ -1,7 +1,9 @@
 package SprintKotlin.KotlindemProject.controller
 
-import SprintKotlin.KotlindemProject.model.SecurityTeam
-import SprintKotlin.KotlindemProject.repo.SecurityTeamRepository
+import SprintKotlin.KotlindemProject.dto.guard.CreateGuardDto
+import SprintKotlin.KotlindemProject.dto.guard.GuardDto
+import SprintKotlin.KotlindemProject.dto.guard.UpdateGuardDto
+import SprintKotlin.KotlindemProject.repo.GuardDtoService
 import org.springframework.web.bind.annotation.*
 import java.math.BigDecimal
 
@@ -9,59 +11,67 @@ import java.math.BigDecimal
 @RestController
 @RequestMapping("/api/guards")
 class SecurityTeamWebController (
-
-  private val repository: SecurityTeamRepository
+  private val guardDtoService: GuardDtoService
 ) {
 
-  @PostMapping("/save")
-  fun save(): String {
-    repository.save(SecurityTeam("Jack", "Smith", 15, BigDecimal.valueOf(15.63),  "Test description", "test category"))
-    return "Guadrs were created successfully"
-  }
-
-  @GetMapping("/findAll")
-  fun findAll() = repository.findAll()
+  @PostMapping("/create")
+  fun create(@RequestBody createGuardDto: CreateGuardDto): GuardDto =
+    guardDtoService.create(
+      CreateGuardDto(
+        "brown.smith@gmail.com",
+        "Brown",
+        "Smith",
+        89,
+        BigDecimal.valueOf(13.55),
+        "Test description",
+        "test category"
+      )
+    )
 
   @GetMapping("/findById/{id}")
-  fun findById(@PathVariable id: Long)
-      = repository.findById(id)
+  fun findById(@PathVariable id: Long): GuardDto {
+    return guardDtoService.findById(id)
+  }
 
   @GetMapping("findByLastName/{firstName}")
-  fun findByLastName(@PathVariable lastName: String)
-      = repository.findByLastName(lastName)
+  fun findByLastName(@PathVariable lastName: String): GuardDto {
+    return guardDtoService.findByLastName(lastName)
+  }
 
   @GetMapping("findByFirstName/{lastName}")
-  fun findByFirstName(@PathVariable firstName: String)
-      = repository.findByFirstName(firstName)
+  fun findByFirstName(@PathVariable firstName: String): GuardDto {
+    return guardDtoService.findByFirstName(firstName)
+  }
 
   @GetMapping("findByAmount/{amount}")
-  fun  findByAmount(@PathVariable amount: Int)
-      = repository.findByAmount(amount)
+  fun findByAmount(@PathVariable amount: Int): GuardDto {
+    return guardDtoService.findByAmount(amount)
+  }
 
   @GetMapping("findByPrice/{price}")
-  fun  findByPrice(@PathVariable price: BigDecimal)
-      = repository.findByPrice(price)
+  fun findByPrice(@PathVariable price: BigDecimal): GuardDto {
+    return guardDtoService.findByPrice(price)
+  }
 
   @GetMapping("findByDescription/{description}")
-  fun  findByDescription(@PathVariable description: String)
-      = repository.findByDescription(description)
+  fun findByDescription(@PathVariable description: String): GuardDto {
+    return guardDtoService.findByDescription(description)
+  }
 
   @GetMapping("findByCategory/{category}")
-  fun  findByCategory(@PathVariable category: String)
-      = repository.findByCategory(category)
+  fun findByCategory(@PathVariable category: String): GuardDto {
+    return guardDtoService.findByCategory(category)
+  }
+
 
   @PutMapping("/{id}")
   fun update(
     @PathVariable id: Long,
-    @RequestBody securityTeam: SecurityTeam
-  )
-  {
-    repository.save(securityTeam)
-  }
+    @RequestBody updateGuardDto: UpdateGuardDto
+  ): GuardDto =
+    guardDtoService.update(updateGuardDto, id)
 
   @DeleteMapping("/{id}")
-  fun delete(@PathVariable id: Long)
-  {
-    repository.deleteById(id)
-  }
+  fun delete(@PathVariable id: Long) = guardDtoService.delete(id)
+
 }

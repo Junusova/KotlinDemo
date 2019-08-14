@@ -1,72 +1,78 @@
 package SprintKotlin.KotlindemProject.controller
 
-import SprintKotlin.KotlindemProject.model.Admin
-import SprintKotlin.KotlindemProject.repo.AdminRepository
-import org.springframework.validation.annotation.Validated
+import SprintKotlin.KotlindemProject.dto.admin.AdminDto
+import SprintKotlin.KotlindemProject.dto.admin.CreateAdminDto
+import SprintKotlin.KotlindemProject.dto.admin.UpdateAdminDto
+import SprintKotlin.KotlindemProject.repo.AdminDtoService
 import org.springframework.web.bind.annotation.*
 import java.math.BigDecimal
-import javax.validation.Valid
 
 
 @RestController
 @RequestMapping("/api/admin")
-class AdminWebController (
-  private val repository: AdminRepository
-  ) {
+class AdminWebController(
+  private val adminDtoService: AdminDtoService
+) {
 
-    @PostMapping("/save")
-    fun save(): String {
-      repository.save(Admin("Brown", "Smith", 89, BigDecimal.valueOf(13.55),  "Test description", "test category"))
-      repository.save(Admin("Max", "Allan", 85, BigDecimal.valueOf(55.11),  "Test description", "test category"))
-      repository.save(Admin("Jimmy", "Fallon", 15, BigDecimal.valueOf(44.56),  "Test description", "test category"))
+  @PostMapping("/create")
+  fun create(@RequestBody createAdminDto: CreateAdminDto): AdminDto =
+    adminDtoService.create(
+      CreateAdminDto(
+        "brown.smith@gmail.com",
+        "Brown",
+        "Smith",
+        89,
+        BigDecimal.valueOf(13.55),
+        "Test description",
+        "test category"
+      )
+    )
 
-      return "Admins was created successfully"
-    }
+  @GetMapping("/findById/{id}")
+  fun findById(@PathVariable id: Long): AdminDto {
+    return adminDtoService.findById(id)
+  }
 
-    @GetMapping("/findAll")
-    fun findAll() = repository.findAll()
+  @GetMapping("findByLastName/{firstName}")
+  fun findByLastName(@PathVariable lastName: String): AdminDto {
+    return adminDtoService.findByLastName(lastName)
+  }
 
-    @GetMapping("/findById/{id}")
-    fun findById(@PathVariable id: Long)
-        = repository.findById(id)
+  @GetMapping("findByFirstName/{lastName}")
+  fun findByFirstName(@PathVariable firstName: String): AdminDto {
+    return adminDtoService.findByFirstName(firstName)
+  }
 
-    @GetMapping("findByLastName/{firstName}")
-    fun findByLastName(@PathVariable lastName: String)
-        = repository.findByLastName(lastName)
+  @GetMapping("findByAmount/{amount}")
+  fun findByAmount(@PathVariable amount: Int): AdminDto {
+    return adminDtoService.findByAmount(amount)
+  }
 
-    @GetMapping("findByFirstName/{lastName}")
-    fun findByFirstName(@PathVariable firstName: String)
-        = repository.findByFirstName(firstName)
+  @GetMapping("findByPrice/{price}")
+  fun findByPrice(@PathVariable price: BigDecimal): AdminDto {
+    return adminDtoService.findByPrice(price)
+  }
 
-    @GetMapping("findByAmount/{amount}")
-    fun  findByAmount(@PathVariable amount: Int)
-        = repository.findByAmount(amount)
+  @GetMapping("findByDescription/{description}")
+  fun findByDescription(@PathVariable description: String): AdminDto {
+    return adminDtoService.findByDescription(description)
+  }
 
-    @GetMapping("findByPrice/{price}")
-    fun  findByPrice(@PathVariable price: BigDecimal)
-        = repository.findByPrice(price)
+  @GetMapping("findByCategory/{category}")
+  fun findByCategory(@PathVariable category: String): AdminDto {
+    return adminDtoService.findByCategory(category)
+  }
 
-    @GetMapping("findByDescription/{description}")
-    fun  findByDescription(@PathVariable description: String)
-        = repository.findByDescription(description)
-
-    @GetMapping("findByCategory/{category}")
-    fun  findByCategory(@PathVariable category: String)
-        = repository.findByCategory(category)
 
   @PutMapping("/{id}")
   fun update(
     @PathVariable id: Long,
-    @RequestBody admin: Admin
-  )
-  {
-    repository.save(admin)
-  }
-
+    @RequestBody updateAdminDto: UpdateAdminDto
+  ): AdminDto =
+    adminDtoService.update(updateAdminDto, id)
 
   @DeleteMapping("/{id}")
-  fun delete(@PathVariable id: Long): String {
-    repository.deleteById(id)
-    return "Admin deleted  successfully"
-  }
-  }
+  fun delete(@PathVariable id: Long) = adminDtoService.delete(id)
+
+}
+

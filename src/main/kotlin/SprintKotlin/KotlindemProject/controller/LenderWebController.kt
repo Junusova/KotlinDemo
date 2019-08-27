@@ -4,9 +4,9 @@ import SprintKotlin.KotlindemProject.dto.lender.CreateLenderDto
 import SprintKotlin.KotlindemProject.dto.lender.LenderDto
 import SprintKotlin.KotlindemProject.dto.lender.UpdateLenderDto
 import SprintKotlin.KotlindemProject.repo.LenderDtoService
+import org.springframework.context.annotation.Configuration
 import org.springframework.web.bind.annotation.*
 import java.math.BigDecimal
-
 
 @RestController
 @RequestMapping("/api/lenders")

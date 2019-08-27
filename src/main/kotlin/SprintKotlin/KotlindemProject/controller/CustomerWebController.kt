@@ -4,9 +4,12 @@ import SprintKotlin.KotlindemProject.dto.customer.CreateCustomerDto
 import SprintKotlin.KotlindemProject.dto.customer.CustomerDto
 import SprintKotlin.KotlindemProject.dto.customer.UpdateCustomerDto
 import SprintKotlin.KotlindemProject.repo.CustomerDtoService
+import org.springframework.context.annotation.Configuration
 import org.springframework.web.bind.annotation.*
 import java.math.BigDecimal
 
+
+@Configuration
 @RestController
 @RequestMapping("/api/customers")
 class CustomerWebController(

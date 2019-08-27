@@ -4,9 +4,9 @@ import SprintKotlin.KotlindemProject.dto.guard.CreateGuardDto
 import SprintKotlin.KotlindemProject.dto.guard.GuardDto
 import SprintKotlin.KotlindemProject.dto.guard.UpdateGuardDto
 import SprintKotlin.KotlindemProject.repo.GuardDtoService
+import org.springframework.context.annotation.Configuration
 import org.springframework.web.bind.annotation.*
 import java.math.BigDecimal
-
 
 @RestController
 @RequestMapping("/api/guards")

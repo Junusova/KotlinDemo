@@ -4,8 +4,8 @@ import SprintKotlin.KotlindemProject.dto.lender.CreateLenderDto
 import SprintKotlin.KotlindemProject.dto.lender.LenderDto
 import SprintKotlin.KotlindemProject.dto.lender.UpdateLenderDto
 import org.springframework.stereotype.Repository
+import org.springframework.stereotype.Service
 import java.math.BigDecimal
-
 
 @Repository
 interface LenderDtoService {

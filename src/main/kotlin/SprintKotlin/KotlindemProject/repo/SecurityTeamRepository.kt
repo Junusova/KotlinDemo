@@ -4,8 +4,8 @@ import SprintKotlin.KotlindemProject.dto.guard.CreateGuardDto
 import SprintKotlin.KotlindemProject.dto.guard.GuardDto
 import SprintKotlin.KotlindemProject.dto.guard.UpdateGuardDto
 import org.springframework.stereotype.Repository
+import org.springframework.stereotype.Service
 import java.math.BigDecimal
-
 
 @Repository
 interface GuardDtoService {

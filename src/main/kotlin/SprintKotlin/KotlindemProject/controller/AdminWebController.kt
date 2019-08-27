@@ -3,7 +3,8 @@ package SprintKotlin.KotlindemProject.controller
 import SprintKotlin.KotlindemProject.dto.admin.AdminDto
 import SprintKotlin.KotlindemProject.dto.admin.CreateAdminDto
 import SprintKotlin.KotlindemProject.dto.admin.UpdateAdminDto
-import SprintKotlin.KotlindemProject.repo.AdminDtoService
+import SprintKotlin.KotlindemProject.repo. AdminDtoService
+import org.springframework.context.annotation.Configuration
 import org.springframework.web.bind.annotation.*
 import java.math.BigDecimal
 

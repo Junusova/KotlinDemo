@@ -3,12 +3,8 @@ package SprintKotlin.KotlindemProject.repo
 import SprintKotlin.KotlindemProject.dto.customer.CreateCustomerDto
 import SprintKotlin.KotlindemProject.dto.customer.CustomerDto
 import SprintKotlin.KotlindemProject.dto.customer.UpdateCustomerDto
-import org.springframework.stereotype.Repository
-import org.springframework.stereotype.Service
 import java.math.BigDecimal
 
-
-@Repository
 interface CustomerDtoService {
   fun create(createCustomerDto: CreateCustomerDto): CustomerDto
   fun update(updateCustomerDto: UpdateCustomerDto, id: Long): CustomerDto

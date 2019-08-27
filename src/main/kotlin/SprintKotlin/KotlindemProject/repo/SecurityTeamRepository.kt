@@ -3,14 +3,11 @@ package SprintKotlin.KotlindemProject.repo
 import SprintKotlin.KotlindemProject.dto.guard.CreateGuardDto
 import SprintKotlin.KotlindemProject.dto.guard.GuardDto
 import SprintKotlin.KotlindemProject.dto.guard.UpdateGuardDto
-import org.springframework.stereotype.Repository
-import org.springframework.stereotype.Service
 import java.math.BigDecimal
 
-@Repository
 interface GuardDtoService {
-  fun create(createGuardDtoDto: CreateGuardDto): GuardDto
-  fun update(updateGuardDtoDto: UpdateGuardDto, id: Long): GuardDto
+  fun create(createGuardDto: CreateGuardDto): GuardDto
+  fun update(updateGuardDto: UpdateGuardDto, id: Long): GuardDto
   fun findById(id: Long): GuardDto
   fun findByLastName(lastName: String): GuardDto
   fun findByFirstName(firstName: String): GuardDto

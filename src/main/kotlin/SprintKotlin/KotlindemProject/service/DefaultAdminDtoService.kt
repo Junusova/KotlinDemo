@@ -18,38 +18,38 @@ class DefaultAdminDtoService (
   }
 
   override fun update(updateAdminDto: UpdateAdminDto, id: Long): AdminDto {
-    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    return adminService.update(updateAdminDto, id)
   }
 
   override fun findById(id: Long): AdminDto {
-    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    return adminService.findById(id)
   }
 
   override fun findByLastName(lastName: String): AdminDto {
-    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+   return adminService.findByLastName(lastName)
   }
 
   override fun findByFirstName(firstName: String): AdminDto {
-    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    return adminService.findByFirstName(firstName)
   }
 
   override fun findByAmount(amount: Int): AdminDto {
-    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+   return  adminService.findByAmount(amount)
   }
 
   override fun findByPrice(price: BigDecimal): AdminDto {
-    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    return adminService.findByPrice(price)
   }
 
   override fun findByDescription(description: String): AdminDto {
-    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    return adminService.findByDescription(description)
   }
 
   override fun findByCategory(category: String): AdminDto {
-    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    return adminService.findByCategory(category)
   }
 
   override fun delete(id: Long) {
-    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+   return adminService.delete(id)
   }
 }

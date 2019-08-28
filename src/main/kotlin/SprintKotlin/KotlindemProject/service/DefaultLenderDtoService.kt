@@ -1,17 +1,15 @@
 package SprintKotlin.KotlindemProject.service
 
-import SprintKotlin.KotlindemProject.dto.lender.LenderDto
 import SprintKotlin.KotlindemProject.dto.lender.CreateLenderDto
+import SprintKotlin.KotlindemProject.dto.lender.LenderDto
 import SprintKotlin.KotlindemProject.dto.lender.UpdateLenderDto
-import SprintKotlin.KotlindemProject.model.Admin
 import SprintKotlin.KotlindemProject.repo.LenderDtoService
 import org.springframework.stereotype.Service
 import java.math.BigDecimal
-import java.util.*
 
 
 @Service
-abstract class DefaultLenderDtoService : LenderDtoService {
+class DefaultLenderDtoService : LenderDtoService {
 
   override fun create(createLenderDto: CreateLenderDto): LenderDto {
     return create(
@@ -31,7 +29,7 @@ abstract class DefaultLenderDtoService : LenderDtoService {
     return update(updateLenderDto, id)
   }
 
-  override fun findById(id: Long): Optional<Admin> {
+  override fun findById(id: Long): LenderDto {
     return findById(id)
   }
 

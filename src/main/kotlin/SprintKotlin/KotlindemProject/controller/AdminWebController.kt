@@ -4,7 +4,7 @@ import SprintKotlin.KotlindemProject.dto.admin.AdminDto
 import SprintKotlin.KotlindemProject.dto.admin.CreateAdminDto
 import SprintKotlin.KotlindemProject.dto.admin.UpdateAdminDto
 import SprintKotlin.KotlindemProject.model.Admin
-import SprintKotlin.KotlindemProject.repo.AdminDtoService
+import SprintKotlin.KotlindemProject.repo.AdminRepository
 import org.springframework.web.bind.annotation.*
 import java.math.BigDecimal
 import java.util.*
@@ -13,46 +13,46 @@ import java.util.*
 @RestController
 @RequestMapping("/api/admin")
 class AdminWebController(
-  private val adminDtoService: AdminDtoService
+  private val adminRepository: AdminRepository
 ) {
 
   @PostMapping("/create")
   fun create(@RequestBody createAdminDto: CreateAdminDto): AdminDto =
-    adminDtoService.create(createAdminDto)
+    adminRepository.create(createAdminDto)
 
   @GetMapping("/findById/{id}")
-  fun findById(@PathVariable id: Long): Optional<Admin> {
-    return adminDtoService.findById(id)
+  fun findById(@PathVariable id: Long): AdminDto {
+    return adminRepository.findById(id)
   }
 
   @GetMapping("findByLastName/{firstName}")
   fun findByLastName(@PathVariable lastName: String): AdminDto {
-    return adminDtoService.findByLastName(lastName)
+    return adminRepository.findByLastName(lastName)
   }
 
   @GetMapping("findByFirstName/{lastName}")
   fun findByFirstName(@PathVariable firstName: String): AdminDto {
-    return adminDtoService.findByFirstName(firstName)
+    return adminRepository.findByFirstName(firstName)
   }
 
   @GetMapping("findByAmount/{amount}")
   fun findByAmount(@PathVariable amount: Int): AdminDto {
-    return adminDtoService.findByAmount(amount)
+    return adminRepository.findByAmount(amount)
   }
 
   @GetMapping("findByPrice/{price}")
   fun findByPrice(@PathVariable price: BigDecimal): AdminDto {
-    return adminDtoService.findByPrice(price)
+    return adminRepository.findByPrice(price)
   }
 
   @GetMapping("findByDescription/{description}")
   fun findByDescription(@PathVariable description: String): AdminDto {
-    return adminDtoService.findByDescription(description)
+    return adminRepository.findByDescription(description)
   }
 
   @GetMapping("findByCategory/{category}")
   fun findByCategory(@PathVariable category: String): AdminDto {
-    return adminDtoService.findByCategory(category)
+    return adminRepository.findByCategory(category)
   }
 
 
@@ -61,10 +61,10 @@ class AdminWebController(
     @PathVariable id: Long,
     @RequestBody updateAdminDto: UpdateAdminDto
   ): AdminDto =
-    adminDtoService.update(updateAdminDto, id)
+    adminRepository.update(updateAdminDto, id)
 
   @DeleteMapping("/{id}")
-  fun delete(@PathVariable id: Long) = adminDtoService.delete(id)
+  fun delete(@PathVariable id: Long) = adminRepository.delete(id)
 
 }
 

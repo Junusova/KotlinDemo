@@ -3,13 +3,12 @@ package SprintKotlin.KotlindemProject.repo
 import SprintKotlin.KotlindemProject.dto.guard.CreateGuardDto
 import SprintKotlin.KotlindemProject.dto.guard.GuardDto
 import SprintKotlin.KotlindemProject.dto.guard.UpdateGuardDto
-import SprintKotlin.KotlindemProject.model.Admin
 import java.math.BigDecimal
 
-interface GuardDtoService : BaseRepository<Admin, Long>  {
+interface GuardDtoService {
   fun create(createGuardDto: CreateGuardDto): GuardDto
   fun update(updateGuardDto: UpdateGuardDto, id: Long): GuardDto
- // fun findById(id: Long): GuardDto
+  fun findById(id: Long): GuardDto
   fun findByLastName(lastName: String): GuardDto
   fun findByFirstName(firstName: String): GuardDto
   fun findByAmount(amount: Int): GuardDto

@@ -3,14 +3,12 @@ package SprintKotlin.KotlindemProject.service
 import SprintKotlin.KotlindemProject.dto.guard.CreateGuardDto
 import SprintKotlin.KotlindemProject.dto.guard.GuardDto
 import SprintKotlin.KotlindemProject.dto.guard.UpdateGuardDto
-import SprintKotlin.KotlindemProject.model.Admin
 import SprintKotlin.KotlindemProject.repo.GuardDtoService
 import org.springframework.stereotype.Service
 import java.math.BigDecimal
-import java.util.*
 
 @Service
-abstract class DefaultGuardDtoService : GuardDtoService {
+class DefaultGuardDtoService : GuardDtoService {
 
   override fun create(createGuardDto: CreateGuardDto): GuardDto {
     return create(
@@ -30,7 +28,7 @@ abstract class DefaultGuardDtoService : GuardDtoService {
     return update(updateGuardDto, id)
   }
 
-  override fun findById(id: Long): Optional<Admin> {
+  override fun findById(id: Long):GuardDto {
     return findById(id)
   }
 

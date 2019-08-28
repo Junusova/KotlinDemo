@@ -1,16 +1,15 @@
 package SprintKotlin.KotlindemProject.service
 
+import SprintKotlin.KotlindemProject.dto.admin.AdminDto
 import SprintKotlin.KotlindemProject.dto.customer.CreateCustomerDto
 import SprintKotlin.KotlindemProject.dto.customer.CustomerDto
 import SprintKotlin.KotlindemProject.dto.customer.UpdateCustomerDto
-import SprintKotlin.KotlindemProject.model.Admin
 import SprintKotlin.KotlindemProject.repo.CustomerDtoService
 import org.springframework.stereotype.Service
 import java.math.BigDecimal
-import java.util.*
 
 @Service
-abstract class DefaultCustomerDtoService : CustomerDtoService {
+class DefaultCustomerDtoService : CustomerDtoService {
 
   override fun create(createCustomerDto: CreateCustomerDto): CustomerDto {
     return create(CreateCustomerDto(
@@ -28,7 +27,7 @@ abstract class DefaultCustomerDtoService : CustomerDtoService {
     return update(updateCustomerDto, id)
   }
 
-  override fun findById(id: Long): Optional<Admin> {
+  override fun findById(id: Long): CustomerDto {
     return findById(id)
   }
 

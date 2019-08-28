@@ -3,10 +3,12 @@ package SprintKotlin.KotlindemProject.controller
 import SprintKotlin.KotlindemProject.dto.customer.CreateCustomerDto
 import SprintKotlin.KotlindemProject.dto.customer.CustomerDto
 import SprintKotlin.KotlindemProject.dto.customer.UpdateCustomerDto
+import SprintKotlin.KotlindemProject.model.Admin
 import SprintKotlin.KotlindemProject.repo.CustomerDtoService
 import org.springframework.context.annotation.Configuration
 import org.springframework.web.bind.annotation.*
 import java.math.BigDecimal
+import java.util.*
 
 
 @Configuration
@@ -18,20 +20,10 @@ class CustomerWebController(
 
   @PostMapping("/create")
   fun create(@RequestBody createCustomerDto: CreateCustomerDto): CustomerDto =
-    customerDtoService.create(
-      CreateCustomerDto(
-        "billy.bobby@gmail.com",
-        "Billy",
-        "Bobby",
-        89655,
-        BigDecimal.valueOf(56.98),
-        "Test description",
-        "test category"
-      )
-    )
+    customerDtoService.create(createCustomerDto)
 
   @GetMapping("/findById/{id}")
-  fun findById(@PathVariable id: Long): CustomerDto {
+  fun findById(@PathVariable id: Long): Optional<Admin> {
     return customerDtoService.findById(id)
   }
 

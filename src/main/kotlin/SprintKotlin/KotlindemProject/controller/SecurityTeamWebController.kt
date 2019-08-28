@@ -3,10 +3,12 @@ package SprintKotlin.KotlindemProject.controller
 import SprintKotlin.KotlindemProject.dto.guard.CreateGuardDto
 import SprintKotlin.KotlindemProject.dto.guard.GuardDto
 import SprintKotlin.KotlindemProject.dto.guard.UpdateGuardDto
+import SprintKotlin.KotlindemProject.model.Admin
 import SprintKotlin.KotlindemProject.repo.GuardDtoService
 import org.springframework.context.annotation.Configuration
 import org.springframework.web.bind.annotation.*
 import java.math.BigDecimal
+import java.util.*
 
 @RestController
 @RequestMapping("/api/guards")
@@ -16,20 +18,10 @@ class SecurityTeamWebController (
 
   @PostMapping("/create")
   fun create(@RequestBody createGuardDto: CreateGuardDto): GuardDto =
-    guardDtoService.create(
-      CreateGuardDto(
-        "brown.smith@gmail.com",
-        "Brown",
-        "Smith",
-        89,
-        BigDecimal.valueOf(13.55),
-        "Test description",
-        "test category"
-      )
-    )
+    guardDtoService.create(createGuardDto)
 
   @GetMapping("/findById/{id}")
-  fun findById(@PathVariable id: Long): GuardDto {
+  fun findById(@PathVariable id: Long): Optional<Admin> {
     return guardDtoService.findById(id)
   }
 

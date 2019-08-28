@@ -3,53 +3,63 @@ package SprintKotlin.KotlindemProject.service
 import SprintKotlin.KotlindemProject.dto.lender.LenderDto
 import SprintKotlin.KotlindemProject.dto.lender.CreateLenderDto
 import SprintKotlin.KotlindemProject.dto.lender.UpdateLenderDto
+import SprintKotlin.KotlindemProject.model.Admin
 import SprintKotlin.KotlindemProject.repo.LenderDtoService
 import org.springframework.stereotype.Service
 import java.math.BigDecimal
+import java.util.*
 
 
 @Service
-class DefaultLenderDtoService (
-  private val lenderService: LenderDtoService
-): LenderDtoService {
+abstract class DefaultLenderDtoService : LenderDtoService {
 
   override fun create(createLenderDto: CreateLenderDto): LenderDto {
-    return lenderService.create(createLenderDto)
+    return create(
+      CreateLenderDto(
+        "sam.jackson@gmail.com",
+        "Sam",
+        "Jackson",
+        1000,
+        BigDecimal.valueOf(96.98),
+        "Test description",
+        "test category"
+      )
+    )
   }
 
   override fun update(updateLenderDto: UpdateLenderDto, id: Long): LenderDto {
-    return lenderService.update(updateLenderDto, id)
+    return update(updateLenderDto, id)
   }
 
-  override fun findById(id: Long): LenderDto {
-    return lenderService.findById(id)
+  override fun findById(id: Long): Optional<Admin> {
+    return findById(id)
   }
 
   override fun findByLastName(lastName: String): LenderDto {
-    return lenderService.findByLastName(lastName)
+    return findByLastName(lastName)
   }
 
   override fun findByFirstName(firstName: String): LenderDto {
-    return lenderService.findByFirstName(firstName)
+    return findByFirstName(firstName)
   }
 
   override fun findByAmount(amount: Int): LenderDto {
-    return  lenderService.findByAmount(amount)
+    return  findByAmount(amount)
   }
 
   override fun findByPrice(price: BigDecimal): LenderDto {
-    return lenderService.findByPrice(price)
+    return findByPrice(price)
   }
 
   override fun findByDescription(description: String): LenderDto {
-    return lenderService.findByDescription(description)
+    return findByDescription(description)
   }
 
   override fun findByCategory(category: String): LenderDto {
-    return lenderService.findByCategory(category)
+    return findByCategory(category)
   }
 
   override fun delete(id: Long) {
-    return lenderService.delete(id)
+    return delete(id)
   }
 }

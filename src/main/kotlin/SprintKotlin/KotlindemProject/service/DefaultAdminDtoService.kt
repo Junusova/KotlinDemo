@@ -3,53 +3,61 @@ package SprintKotlin.KotlindemProject.service
 import SprintKotlin.KotlindemProject.dto.admin.AdminDto
 import SprintKotlin.KotlindemProject.dto.admin.CreateAdminDto
 import SprintKotlin.KotlindemProject.dto.admin.UpdateAdminDto
+import SprintKotlin.KotlindemProject.model.Admin
 import SprintKotlin.KotlindemProject.repo.AdminDtoService
 import org.springframework.stereotype.Service
 import java.math.BigDecimal
+import java.util.*
 
 
 @Service
-class DefaultAdminDtoService (
-  private val adminService: AdminDtoService
-): AdminDtoService {
+abstract class DefaultAdminDtoService : AdminDtoService {
 
   override fun create(createAdminDto: CreateAdminDto): AdminDto {
-    return adminService.create(createAdminDto)
+    return create( CreateAdminDto(
+      "brown.smith@gmail.com",
+      "Brown",
+      "Smith",
+      89,
+      BigDecimal.valueOf(13.55),
+      "Test description",
+      "test category"
+    ))
   }
 
   override fun update(updateAdminDto: UpdateAdminDto, id: Long): AdminDto {
-    return adminService.update(updateAdminDto, id)
+    return update(updateAdminDto, id)
   }
 
-  override fun findById(id: Long): AdminDto {
-    return adminService.findById(id)
+  override fun findById(id: Long): Optional<Admin> {
+    return findById(id)
   }
 
   override fun findByLastName(lastName: String): AdminDto {
-   return adminService.findByLastName(lastName)
+   return findByLastName(lastName)
   }
 
   override fun findByFirstName(firstName: String): AdminDto {
-    return adminService.findByFirstName(firstName)
+    return findByFirstName(firstName)
   }
 
   override fun findByAmount(amount: Int): AdminDto {
-   return  adminService.findByAmount(amount)
+   return  findByAmount(amount)
   }
 
   override fun findByPrice(price: BigDecimal): AdminDto {
-    return adminService.findByPrice(price)
+    return findByPrice(price)
   }
 
   override fun findByDescription(description: String): AdminDto {
-    return adminService.findByDescription(description)
+    return findByDescription(description)
   }
 
   override fun findByCategory(category: String): AdminDto {
-    return adminService.findByCategory(category)
+    return findByCategory(category)
   }
 
   override fun delete(id: Long) {
-   return adminService.delete(id)
+   return delete(id)
   }
 }

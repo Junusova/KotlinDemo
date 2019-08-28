@@ -3,10 +3,12 @@ package SprintKotlin.KotlindemProject.controller
 import SprintKotlin.KotlindemProject.dto.lender.CreateLenderDto
 import SprintKotlin.KotlindemProject.dto.lender.LenderDto
 import SprintKotlin.KotlindemProject.dto.lender.UpdateLenderDto
+import SprintKotlin.KotlindemProject.model.Admin
 import SprintKotlin.KotlindemProject.repo.LenderDtoService
 import org.springframework.context.annotation.Configuration
 import org.springframework.web.bind.annotation.*
 import java.math.BigDecimal
+import java.util.*
 
 @RestController
 @RequestMapping("/api/lenders")
@@ -16,20 +18,10 @@ class LenderWebController(
 
   @PostMapping("/create")
   fun create(@RequestBody createLenderDto: CreateLenderDto): LenderDto =
-    lenderDtoService.create(
-      CreateLenderDto(
-        "sam.jackson@gmail.com",
-        "Sam",
-        "Jackson",
-        1000,
-        BigDecimal.valueOf(96.98),
-        "Test description",
-        "test category"
-      )
-    )
+    lenderDtoService.create(createLenderDto)
 
   @GetMapping("/findById/{id}")
-  fun findById(@PathVariable id: Long): LenderDto {
+  fun findById(@PathVariable id: Long): Optional<Admin> {
     return lenderDtoService.findById(id)
   }
 

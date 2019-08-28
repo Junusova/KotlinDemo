@@ -3,10 +3,11 @@ package SprintKotlin.KotlindemProject.controller
 import SprintKotlin.KotlindemProject.dto.admin.AdminDto
 import SprintKotlin.KotlindemProject.dto.admin.CreateAdminDto
 import SprintKotlin.KotlindemProject.dto.admin.UpdateAdminDto
-import SprintKotlin.KotlindemProject.repo. AdminDtoService
-import org.springframework.context.annotation.Configuration
+import SprintKotlin.KotlindemProject.model.Admin
+import SprintKotlin.KotlindemProject.repo.AdminDtoService
 import org.springframework.web.bind.annotation.*
 import java.math.BigDecimal
+import java.util.*
 
 
 @RestController
@@ -17,20 +18,10 @@ class AdminWebController(
 
   @PostMapping("/create")
   fun create(@RequestBody createAdminDto: CreateAdminDto): AdminDto =
-    adminDtoService.create(
-      CreateAdminDto(
-        "brown.smith@gmail.com",
-        "Brown",
-        "Smith",
-        89,
-        BigDecimal.valueOf(13.55),
-        "Test description",
-        "test category"
-      )
-    )
+    adminDtoService.create(createAdminDto)
 
   @GetMapping("/findById/{id}")
-  fun findById(@PathVariable id: Long): AdminDto {
+  fun findById(@PathVariable id: Long): Optional<Admin> {
     return adminDtoService.findById(id)
   }
 

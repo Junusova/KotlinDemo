@@ -3,12 +3,13 @@ package SprintKotlin.KotlindemProject.repo
 import SprintKotlin.KotlindemProject.dto.lender.CreateLenderDto
 import SprintKotlin.KotlindemProject.dto.lender.LenderDto
 import SprintKotlin.KotlindemProject.dto.lender.UpdateLenderDto
+import SprintKotlin.KotlindemProject.model.Admin
 import java.math.BigDecimal
 
-interface LenderDtoService {
+interface LenderDtoService : BaseRepository<Admin, Long>  {
   fun create(createLenderDto: CreateLenderDto): LenderDto
   fun update(updateLenderDto: UpdateLenderDto, id: Long): LenderDto
-  fun findById(id: Long): LenderDto
+//  fun findById(id: Long): LenderDto
   fun findByLastName(lastName: String): LenderDto
   fun findByFirstName(firstName: String): LenderDto
   fun findByAmount(amount: Int): LenderDto

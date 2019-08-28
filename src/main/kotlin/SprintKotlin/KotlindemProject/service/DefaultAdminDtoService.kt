@@ -8,7 +8,6 @@ import SprintKotlin.KotlindemProject.repo.AdminRepository
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import java.math.BigDecimal
-import java.util.*
 
 interface AdminDtoService {
   fun create(createAdminDto: CreateAdminDto): AdminDto
@@ -44,7 +43,7 @@ class DefaultAdminDtoService(
         description = it.description,
         amount = it.amount,
         category = it.category,
-        lastName =it.lastName,
+        lastName = it.lastName,
         price = it.price
       )
     }.let {
@@ -56,26 +55,25 @@ class DefaultAdminDtoService(
         description = it.description,
         amount = it.amount,
         category = it.category,
-        lastName =it.lastName,
-        price = it.price
+        lastName = it.lastName,
+        price = it.price,
+        email = "ewrer",
+        isActive = true
       )
     }
   }
 
   @Transactional
   override fun update(updateAdminDto: UpdateAdminDto, id: Long): AdminDto {
-    val admin = adminRepository.findById(id).takeIf { it.isPresent }?.get()?:n
-
-
-    return update(updateAdminDto, id)
+    val admin = adminRepository.findById(id).takeIf { it.isPresent }?.get() ?: return update(updateAdminDto, id)
   }
 
-  override fun findById(id: Long): Optional<Admin> {
+  override fun findById(id: Long): AdminDto {
     return findById(id)
   }
 
   override fun findByLastName(lastName: String): AdminDto {
-   return findByLastName(lastName)
+    return findByLastName(lastName)
   }
 
   override fun findByFirstName(firstName: String): AdminDto {
@@ -83,7 +81,7 @@ class DefaultAdminDtoService(
   }
 
   override fun findByAmount(amount: Int): AdminDto {
-   return  findByAmount(amount)
+    return findByAmount(amount)
   }
 
   override fun findByPrice(price: BigDecimal): AdminDto {
@@ -99,6 +97,6 @@ class DefaultAdminDtoService(
   }
 
   override fun delete(id: Long) {
-   return delete(id)
+    return delete(id)
   }
 }

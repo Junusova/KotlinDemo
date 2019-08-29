@@ -1,15 +1,30 @@
 package SprintKotlin.KotlindemProject.service
 
-import SprintKotlin.KotlindemProject.dto.admin.AdminDto
 import SprintKotlin.KotlindemProject.dto.customer.CreateCustomerDto
 import SprintKotlin.KotlindemProject.dto.customer.CustomerDto
 import SprintKotlin.KotlindemProject.dto.customer.UpdateCustomerDto
-import SprintKotlin.KotlindemProject.repo.CustomerDtoService
+import SprintKotlin.KotlindemProject.repo.CustomerRepository
 import org.springframework.stereotype.Service
 import java.math.BigDecimal
 
+interface  CustomerDtoService {
+  fun create(createCustomerDto: CreateCustomerDto): CustomerDto
+  fun update(updateCustomerDto: UpdateCustomerDto, id: Long): CustomerDto
+  fun findById(id: Long): CustomerDto
+  fun findByLastName(lastName: String): CustomerDto
+  fun findByFirstName(firstName: String): CustomerDto
+  fun findByAmount(amount: Int): CustomerDto
+  fun findByPrice(price: BigDecimal): CustomerDto
+  fun findByDescription(description: String): CustomerDto
+  fun findByCategory(category: String): CustomerDto
+  fun delete(id: Long)
+
+}
+
 @Service
-class DefaultCustomerDtoService : CustomerDtoService {
+class DefaultCustomerDtoService(
+private val customerRepository: CustomerRepository
+) : CustomerDtoService {
 
   override fun create(createCustomerDto: CreateCustomerDto): CustomerDto {
     return create(CreateCustomerDto(

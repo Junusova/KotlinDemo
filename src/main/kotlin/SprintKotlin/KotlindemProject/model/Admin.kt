@@ -27,6 +27,9 @@ data class Admin(
   @Column(name = "category")
   var category: String,
 
+  @Column(name = "is_active")
+  var is_active: Boolean,
+
   override var id: Long?=null
 
 ) : BaseEntity()

@@ -10,21 +10,21 @@ import javax.persistence.Table
 data class Lender(
 
   @Column(name = "firstName")
-  val firstName: String,
+  var firstName: String,
 
   @Column(name = "lastName")
-  val lastName: String,
+  var lastName: String,
 
   @Column(name = "amount")
-  val amount: Int,
+  var amount: Int,
 
   @Column(name = "price")
-  val price: BigDecimal,
+  var price: BigDecimal,
 
   @Column(name = "description")
-  val description: String,
+  var description: String,
 
   @Column(name = "category")
-  val category: String
+  var category: String
 
 ) : BaseEntity()

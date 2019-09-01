@@ -44,7 +44,8 @@ class DefaultAdminDtoService(
         amount = it.amount,
         category = it.category,
         lastName = it.lastName,
-        price = it.price
+        price = it.price,
+        is_active = true
       )
     }.let {
       adminRepository.save(it)
@@ -57,7 +58,6 @@ class DefaultAdminDtoService(
         category = it.category,
         lastName = it.lastName,
         price = it.price,
-        email = "ewrer",
         isActive = true
       )
     }
@@ -65,7 +65,28 @@ class DefaultAdminDtoService(
 
   @Transactional
   override fun update(updateAdminDto: UpdateAdminDto, id: Long): AdminDto {
-    val admin = adminRepository.findById(id).takeIf { it.isPresent }?.get() ?: return update(updateAdminDto, id)
+    val admin = adminRepository.getOne(id)
+    admin.apply {
+      firstName = updateAdminDto.firstName
+      lastName = updateAdminDto.lastName
+      amount = updateAdminDto.amount
+      category = updateAdminDto.category
+      price = updateAdminDto.price
+      description = updateAdminDto.description
+    }
+
+    adminRepository.save(admin)
+
+    return AdminDto(
+      firstName = admin.firstName,
+      lastName = admin.lastName,
+      amount = admin.amount,
+      category = admin.category,
+      price = admin.price,
+      description = admin.description,
+      isActive = admin.is_active,
+      id = admin.id!!
+    )
   }
 
   override fun findById(id: Long): AdminDto {

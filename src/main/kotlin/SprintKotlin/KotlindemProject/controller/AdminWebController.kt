@@ -19,7 +19,7 @@ class AdminWebController(private val adminRepository: AdminDtoService) {
 
   @GetMapping("/findById/{id}")
   fun findById(@PathVariable id: Long): AdminDto =
-   adminRepository.findById(id)
+    adminRepository.findById(id)
 
 
   @GetMapping("findByLastName/{firstName}")

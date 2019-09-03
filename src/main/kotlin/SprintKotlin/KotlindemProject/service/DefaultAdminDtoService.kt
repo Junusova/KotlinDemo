@@ -3,8 +3,10 @@ package SprintKotlin.KotlindemProject.service
 import SprintKotlin.KotlindemProject.dto.admin.AdminDto
 import SprintKotlin.KotlindemProject.dto.admin.CreateAdminDto
 import SprintKotlin.KotlindemProject.dto.admin.UpdateAdminDto
+import SprintKotlin.KotlindemProject.dto.customer.CustomerDto
 import SprintKotlin.KotlindemProject.model.Admin
 import SprintKotlin.KotlindemProject.repo.AdminRepository
+import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import java.math.BigDecimal
@@ -118,6 +120,7 @@ class DefaultAdminDtoService(
   }
 
   override fun delete(id: Long) {
-    return delete(id)
+    val admin = adminRepository.getOne(id)
+    adminRepository.delete(admin)
   }
 }

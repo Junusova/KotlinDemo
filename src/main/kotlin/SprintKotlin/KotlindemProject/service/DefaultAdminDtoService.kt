@@ -92,7 +92,17 @@ class DefaultAdminDtoService(
   }
 
   override fun findById(id: Long): AdminDto {
-    return findById(id)
+   val admin = adminRepository.getOne(id)
+   return AdminDto(
+     firstName = admin.firstName,
+     lastName = admin.lastName,
+     amount = admin.amount,
+     category = admin.category,
+     price = admin.price,
+     description = admin.description,
+     isActive = admin.is_active,
+     id = admin.id!!
+   )
   }
 
   override fun findByLastName(lastName: String): AdminDto {

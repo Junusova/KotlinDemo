@@ -9,7 +9,7 @@ import javax.persistence.Table
 @Table(name = "admin")
 data class Admin(
 
-  @Column(name = "firstName")
+  @Column(name = "first_name")
   var firstName: String,
 
   @Column(name = "lastName")

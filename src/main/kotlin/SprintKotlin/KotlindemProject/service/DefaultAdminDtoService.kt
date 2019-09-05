@@ -3,10 +3,8 @@ package SprintKotlin.KotlindemProject.service
 import SprintKotlin.KotlindemProject.dto.admin.AdminDto
 import SprintKotlin.KotlindemProject.dto.admin.CreateAdminDto
 import SprintKotlin.KotlindemProject.dto.admin.UpdateAdminDto
-import SprintKotlin.KotlindemProject.dto.customer.CustomerDto
 import SprintKotlin.KotlindemProject.model.Admin
 import SprintKotlin.KotlindemProject.repo.AdminRepository
-import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import java.math.BigDecimal
@@ -92,25 +90,45 @@ class DefaultAdminDtoService(
   }
 
   override fun findById(id: Long): AdminDto {
-   val admin = adminRepository.getOne(id)
-   return AdminDto(
-     firstName = admin.firstName,
-     lastName = admin.lastName,
-     amount = admin.amount,
-     category = admin.category,
-     price = admin.price,
-     description = admin.description,
-     isActive = admin.is_active,
-     id = admin.id!!
-   )
+    val admin = adminRepository.getOne(id)
+    return AdminDto(
+      firstName = admin.firstName,
+      lastName = admin.lastName,
+      amount = admin.amount,
+      category = admin.category,
+      price = admin.price,
+      description = admin.description,
+      isActive = admin.is_active,
+      id = admin.id!!
+    )
   }
 
   override fun findByLastName(lastName: String): AdminDto {
-    return findByLastName(lastName)
+    val admin = adminRepository.findByFirstName(lastName)
+    return AdminDto(
+      firstName = admin.firstName,
+      lastName = admin.lastName,
+      amount = admin.amount,
+      category = admin.category,
+      price = admin.price,
+      description = admin.description,
+      isActive = admin.is_active,
+      id = admin.id!!
+    )
   }
 
   override fun findByFirstName(firstName: String): AdminDto {
-    return findByFirstName(firstName)
+    val admin = adminRepository.findByFirstName(firstName)
+    return AdminDto(
+      firstName = admin.firstName,
+      lastName = admin.lastName,
+      amount = admin.amount,
+      category = admin.category,
+      price = admin.price,
+      description = admin.description,
+      isActive = admin.is_active,
+      id = admin.id!!
+    )
   }
 
   override fun findByAmount(amount: Int): AdminDto {

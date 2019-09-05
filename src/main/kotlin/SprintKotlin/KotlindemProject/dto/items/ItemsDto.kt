@@ -1,31 +1,28 @@
-package SprintKotlin.KotlindemProject.dto.lender
+package SprintKotlin.KotlindemProject.dto.items
+
 import java.math.BigDecimal
 
-data class LenderDto(
+data class ItemsDto(
   val id: Long,
-  val email: String,
   val isActive: Boolean,
-  val firstName: String,
-  val lastName: String,
+  val name: String,
   val amount: Int,
   val price: BigDecimal,
   val description: String,
   val category: String
 )
 
-data class CreateLenderDto(
+data class CreateItemsDto(
   val email: String,
-  val firstName: String,
-  val lastName: String,
+  val name: String,
   val amount: Int,
   val price: BigDecimal,
   val description: String,
   val category: String
 )
 
-data class UpdateLenderDto(
-  val firstName: String,
-  val lastName: String,
+data class UpdateItemsDto(
+  val name: String,
   val amount: Int,
   val price: BigDecimal,
   val description: String,

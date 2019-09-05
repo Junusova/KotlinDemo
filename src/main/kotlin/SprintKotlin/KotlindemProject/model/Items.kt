@@ -6,14 +6,11 @@ import javax.persistence.Entity
 import javax.persistence.Table
 
 @Entity
-@Table(name = "lender")
-data class Lender(
+@Table(name = "items")
+data class Items(
 
-  @Column(name = "firstName")
-  var firstName: String,
-
-  @Column(name = "lastName")
-  var lastName: String,
+  @Column(name = "name")
+  var name: String,
 
   @Column(name = "amount")
   var amount: Int,
@@ -25,6 +22,11 @@ data class Lender(
   var description: String,
 
   @Column(name = "category")
-  var category: String
+  var category: String,
+
+  @Column(name = "is_active")
+  var is_active: Boolean,
+
+  override var id: Long?=null
 
 ) : BaseEntity()

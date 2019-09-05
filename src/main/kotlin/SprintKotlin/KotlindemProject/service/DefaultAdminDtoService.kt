@@ -5,6 +5,7 @@ import SprintKotlin.KotlindemProject.dto.admin.CreateAdminDto
 import SprintKotlin.KotlindemProject.dto.admin.UpdateAdminDto
 import SprintKotlin.KotlindemProject.model.Admin
 import SprintKotlin.KotlindemProject.repo.AdminRepository
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import java.math.BigDecimal
@@ -89,6 +90,7 @@ class DefaultAdminDtoService(
     )
   }
 
+  @Transactional(readOnly = true)
   override fun findById(id: Long): AdminDto {
     val admin = adminRepository.getOne(id)
     return AdminDto(
@@ -103,6 +105,7 @@ class DefaultAdminDtoService(
     )
   }
 
+  @Transactional(readOnly = true)
   override fun findByLastName(lastName: String): AdminDto {
     val admin = adminRepository.findByLastName(lastName)
     return AdminDto(
@@ -117,6 +120,7 @@ class DefaultAdminDtoService(
     )
   }
 
+  @Transactional(readOnly = true)
   override fun findByFirstName(firstName: String): AdminDto {
     val admin = adminRepository.findByFirstName(firstName)
     return AdminDto(
@@ -131,6 +135,7 @@ class DefaultAdminDtoService(
     )
   }
 
+  @Transactional(readOnly = true)
   override fun findByAmount(amount: Int): AdminDto {
     val admin = adminRepository.findByAmount(amount)
     return AdminDto(
@@ -145,6 +150,7 @@ class DefaultAdminDtoService(
     )
   }
 
+  @Transactional(readOnly = true)
   override fun findByPrice(price: BigDecimal): AdminDto {
     val admin = adminRepository.findByPrice(price)
     return AdminDto(
@@ -159,6 +165,7 @@ class DefaultAdminDtoService(
     )
   }
 
+  @Transactional(readOnly = true)
   override fun findByDescription(description: String): AdminDto {
     val admin = adminRepository.findByDescription(description)
     return AdminDto(
@@ -173,6 +180,7 @@ class DefaultAdminDtoService(
     )
   }
 
+  @Transactional(readOnly = true)
   override fun findByCategory(category: String): AdminDto {
     val admin = adminRepository.findByCategory(category)
     return AdminDto(
@@ -187,6 +195,7 @@ class DefaultAdminDtoService(
     )
   }
 
+  @Transactional()
   override fun delete(id: Long) {
     val admin = adminRepository.getOne(id)
     adminRepository.delete(admin)

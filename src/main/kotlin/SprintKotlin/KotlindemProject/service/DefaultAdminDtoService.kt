@@ -104,7 +104,7 @@ class DefaultAdminDtoService(
   }
 
   override fun findByLastName(lastName: String): AdminDto {
-    val admin = adminRepository.findByFirstName(lastName)
+    val admin = adminRepository.findByLastName(lastName)
     return AdminDto(
       firstName = admin.firstName,
       lastName = admin.lastName,
@@ -132,19 +132,59 @@ class DefaultAdminDtoService(
   }
 
   override fun findByAmount(amount: Int): AdminDto {
-    return findByAmount(amount)
+    val admin = adminRepository.findByAmount(amount)
+    return AdminDto(
+      firstName = admin.firstName,
+      lastName = admin.lastName,
+      amount = admin.amount,
+      category = admin.category,
+      price = admin.price,
+      description = admin.description,
+      isActive = admin.is_active,
+      id = admin.id!!
+    )
   }
 
   override fun findByPrice(price: BigDecimal): AdminDto {
-    return findByPrice(price)
+    val admin = adminRepository.findByPrice(price)
+    return AdminDto(
+      firstName = admin.firstName,
+      lastName = admin.lastName,
+      amount = admin.amount,
+      category = admin.category,
+      price = admin.price,
+      description = admin.description,
+      isActive = admin.is_active,
+      id = admin.id!!
+    )
   }
 
   override fun findByDescription(description: String): AdminDto {
-    return findByDescription(description)
+    val admin = adminRepository.findByDescription(description)
+    return AdminDto(
+      firstName = admin.firstName,
+      lastName = admin.lastName,
+      amount = admin.amount,
+      category = admin.category,
+      price = admin.price,
+      description = admin.description,
+      isActive = admin.is_active,
+      id = admin.id!!
+    )
   }
 
   override fun findByCategory(category: String): AdminDto {
-    return findByCategory(category)
+    val admin = adminRepository.findByCategory(category)
+    return AdminDto(
+      firstName = admin.firstName,
+      lastName = admin.lastName,
+      amount = admin.amount,
+      category = admin.category,
+      price = admin.price,
+      description = admin.description,
+      isActive = admin.is_active,
+      id = admin.id!!
+    )
   }
 
   override fun delete(id: Long) {

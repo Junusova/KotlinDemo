@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody
 interface CategoryDtoService {
   fun create(createCategoryDto: CreateCategoryDto): CategoryDto
   fun update(updateCategoryDto: UpdateCategoryDto, id: Long): CategoryDto
-  fun findById(id: Long): ItemsDto
-  fun findByName(name: String): ItemsDto
+  fun findById(id: Long): CategoryDto
+  fun findByName(name: String): CategoryDto
   fun findByDescription(description: String)
   fun delete(id: Long)
 }
@@ -60,11 +60,17 @@ class DefaultCategoryDtoService(
     )
   }
 
-  override fun findById(id: Long): ItemsDto {
-    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+  override fun findById(id: Long): CategoryDto {
+    val category = categoryRepository.getOne(id)
+    return CategoryDto(
+      id = category.id!!,
+      amount = category.amount,
+      description = category.description,
+      name = category.name
+    )
   }
 
-  override fun findByName(name: String): ItemsDto {
+  override fun findByName(name: String):CategoryDto {
     TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
   }
 

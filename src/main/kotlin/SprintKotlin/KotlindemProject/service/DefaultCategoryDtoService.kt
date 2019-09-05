@@ -35,7 +35,6 @@ class DefaultCategoryDtoService(
         description = createCategoryDto.description
       )
     )
-
     return CategoryDto(
       id = category.id!!,
       amount = category.amount,
@@ -46,7 +45,19 @@ class DefaultCategoryDtoService(
   }
 
   override fun update(updateCategoryDto: UpdateCategoryDto, id: Long): CategoryDto {
-    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    val category = categoryRepository.getOne(id)
+    category.apply {
+      amount = updateCategoryDto.amount
+      description = updateCategoryDto.description
+      name = updateCategoryDto.name
+    }
+
+    return CategoryDto(
+      id = category.id!!,
+      amount = category.amount,
+      description = category.description,
+      name = category.name
+    )
   }
 
   override fun findById(id: Long): ItemsDto {

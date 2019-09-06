@@ -19,8 +19,8 @@ class ItemsWebController(private val adminRepository: ItemsDtoService) {
   fun findById(@PathVariable id: Long): ItemsDto =
     adminRepository.findById(id)
 
-  @GetMapping("/findByLastName/{lastName}")
-  fun findByLastName(@PathVariable name: String): ItemsDto =
+  @GetMapping("/findByName/{name}")
+  fun findByName(@PathVariable name: String): ItemsDto =
    adminRepository.findByName(name)
 
   @GetMapping("/findByAmount/{amount}")
@@ -40,7 +40,7 @@ class ItemsWebController(private val adminRepository: ItemsDtoService) {
      adminRepository.findByCategory(category)
 
 
-  @PutMapping("/{id}")
+  @PutMapping("update/{id}")
   fun update(
     @PathVariable id: Long,
     @RequestBody updateItemsDto: UpdateItemsDto): ItemsDto =

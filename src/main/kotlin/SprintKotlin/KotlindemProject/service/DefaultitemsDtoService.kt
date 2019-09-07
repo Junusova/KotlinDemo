@@ -24,21 +24,35 @@ interface ItemsDtoService {
 
 @Service
 class DefaultItemsDtoService(
+
   private val itemsRepository: ItemsRepository
 ) : ItemsDtoService {
 
   @Transactional
   override fun create(createItemsDto: CreateItemsDto): ItemsDto {
 
-    val item = itemsRepository.save(Items(
-      name = createItemsDto.name,
-      amount = createItemsDto.amount,
-      description = createItemsDto.description,
-      categories = createItemsDto.category,
-      price = createItemsDto.price,
-      is_active = true
-    ))
+    val item = itemsRepository.save(
+      Items(
+        name = createItemsDto.name,
+        amount = createItemsDto.amount,
+        description = createItemsDto.description,
+        categories = createItemsDto.category,
+        price = createItemsDto.price,
+        is_active = true
+      )
+    )
 
+    return ItemsDto(
+      name = item.name,
+      amount = item.amount,
+      description = item.description,
+      category = item.categories,
+      price = item.price,
+      id = item.id!!,
+      isActive = item.is_active
+
+    )
+  }
 
   @Transactional
   override fun update(updateItemsDto: UpdateItemsDto, id: Long): ItemsDto {

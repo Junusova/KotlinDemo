@@ -1,14 +1,14 @@
 package SprintKotlin.KotlindemProject.model
 
 import java.math.BigDecimal
-import javax.persistence.Column
-import javax.persistence.Entity
-import javax.persistence.Table
-
+import javax.persistence.*
 
 @Entity
 @Table(name = "category")
 data class Category (
+
+  @OneToMany(mappedBy = "category",fetch = FetchType.LAZY)
+  var items: List<Items>,
 
   @Column(name = "name")
   var name: String,

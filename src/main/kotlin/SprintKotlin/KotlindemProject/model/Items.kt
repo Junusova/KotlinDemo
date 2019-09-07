@@ -1,13 +1,15 @@
 package SprintKotlin.KotlindemProject.model
 
 import java.math.BigDecimal
-import javax.persistence.Column
-import javax.persistence.Entity
-import javax.persistence.Table
+import javax.persistence.*
 
 @Entity
 @Table(name = "items")
 data class Items(
+
+  @ManyToOne(fetch = FetchType.EAGER)
+  @JoinColumn(name = "categories_id")
+  var categories: Category?,
 
   @Column(name = "name")
   var name: String,
@@ -21,12 +23,7 @@ data class Items(
   @Column(name = "description")
   var description: String,
 
-  @Column(name = "category")
-  var category: String,
-
   @Column(name = "is_active")
-  var is_active: Boolean,
-
-  override var id: Long?=null
+  var is_active: Boolean
 
 ) : BaseEntity()

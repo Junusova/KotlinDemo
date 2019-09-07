@@ -32,7 +32,8 @@ class DefaultCategoryDtoService(
       Category(
         name = createCategoryDto.name,
         amount = createCategoryDto.amount,
-        description = createCategoryDto.description
+        description = createCategoryDto.description,
+        items = listOf()
       )
     )
     return CategoryDto(

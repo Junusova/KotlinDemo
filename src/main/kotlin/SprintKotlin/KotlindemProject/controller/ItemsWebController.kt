@@ -36,7 +36,7 @@ class ItemsWebController(private val adminRepository: ItemsDtoService) {
      adminRepository.findByDescription(description)
 
   @GetMapping("/findByCategory/{category}")
-  fun findByCategory(@PathVariable category: String): ItemsDto =
+  fun findByCategory(@PathVariable category: Long): ItemsDto =
      adminRepository.findByCategory(category)
 
 

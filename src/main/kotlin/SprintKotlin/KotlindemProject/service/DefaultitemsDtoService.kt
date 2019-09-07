@@ -3,6 +3,7 @@ package SprintKotlin.KotlindemProject.service
 import SprintKotlin.KotlindemProject.dto.items.CreateItemsDto
 import SprintKotlin.KotlindemProject.dto.items.ItemsDto
 import SprintKotlin.KotlindemProject.dto.items.UpdateItemsDto
+import SprintKotlin.KotlindemProject.model.Category
 import SprintKotlin.KotlindemProject.model.Items
 import SprintKotlin.KotlindemProject.repo.ItemsRepository
 import org.springframework.stereotype.Service
@@ -17,7 +18,7 @@ interface ItemsDtoService {
   fun findByAmount(amount: Int): ItemsDto
   fun findByPrice(price: BigDecimal): ItemsDto
   fun findByDescription(description: String): ItemsDto
-  fun findByCategory(category: String): ItemsDto
+  fun findByCategory(category: Category): ItemsDto
   fun delete(id: Long)
 }
 
@@ -28,36 +29,16 @@ class DefaultItemsDtoService(
 
   @Transactional
   override fun create(createItemsDto: CreateItemsDto): ItemsDto {
-    return CreateItemsDto(
-      "brown.smith@gmail.com",
-      "Brown",
-      89,
-      BigDecimal.valueOf(13.55),
-      "Test description",
-      "test category"
-    ).let {
-      Items(
-        name = it.name,
-        description = it.description,
-        amount = it.amount,
-        category = it.category,
-        price = it.price,
-        is_active = true
-      )
-    }.let {
-      itemsRepository.save(it)
-    }.let {
-      ItemsDto(
-        id = it.id!!,
-        name = it.name,
-        description = it.description,
-        amount = it.amount,
-        category = it.category,
-        price = it.price,
-        isActive = true
-      )
-    }
-  }
+
+    val item = itemsRepository.save(Items(
+      name = createItemsDto.name,
+      amount = createItemsDto.amount,
+      description = createItemsDto.description,
+      categories = createItemsDto.category,
+      price = createItemsDto.price,
+      is_active = true
+    ))
+
 
   @Transactional
   override fun update(updateItemsDto: UpdateItemsDto, id: Long): ItemsDto {

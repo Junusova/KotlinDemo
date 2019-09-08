@@ -15,7 +15,7 @@ data class Items(
   var name: String,
 
   @Column(name = "amount")
-  var amount: Int,
+  var amount: BigDecimal,
 
   @Column(name = "price")
   var price: BigDecimal,
@@ -24,6 +24,6 @@ data class Items(
   var description: String,
 
   @Column(name = "is_active")
-  var is_active: Boolean
+  var isActive: Boolean?
 
 ) : BaseEntity()

@@ -3,7 +3,6 @@ package SprintKotlin.KotlindemProject.service
 import SprintKotlin.KotlindemProject.dto.category.CategoryDto
 import SprintKotlin.KotlindemProject.dto.category.CreateCategoryDto
 import SprintKotlin.KotlindemProject.dto.category.UpdateCategoryDto
-import SprintKotlin.KotlindemProject.dto.items.ItemsDto
 import SprintKotlin.KotlindemProject.model.Category
 import SprintKotlin.KotlindemProject.repo.CategoryRepository
 import org.springframework.stereotype.Service
@@ -11,8 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 
 
-interface CategoryDtoService {
-  fun create(createCategoryDto: CreateCategoryDto): CategoryDto
+interface CategoryService {
+  fun create(category: Category): Category
   fun update(updateCategoryDto: UpdateCategoryDto, id: Long): CategoryDto
   fun findById(id: Long): CategoryDto
   fun findByName(name: String): CategoryDto
@@ -21,29 +20,15 @@ interface CategoryDtoService {
 }
 
 @Service
-class DefaultCategoryDtoService(
+class DefaultCategoryService(
   private val categoryRepository: CategoryRepository
-) : CategoryDtoService {
+) : CategoryService {
 
 
-  @PostMapping
-  override fun create(@RequestBody createCategoryDto: CreateCategoryDto): CategoryDto {
-    val category = categoryRepository.save(
-      Category(
-        name = createCategoryDto.name,
-        amount = createCategoryDto.amount,
-        description = createCategoryDto.description,
-        items = listOf()
-      )
-    )
-    return CategoryDto(
-      id = category.id!!,
-      amount = category.amount,
-      description = category.description,
-      name = category.name
-    )
-
+  override fun create(category: Category): Category {
+    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
   }
+
 
   override fun update(updateCategoryDto: UpdateCategoryDto, id: Long): CategoryDto {
     val category = categoryRepository.getOne(id)

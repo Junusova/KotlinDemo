@@ -28,6 +28,6 @@ data class UpdateItemsDto(
   val amount: BigDecimal,
   val price: BigDecimal,
   val description: String,
-  val category: CategoryDto,
+  val categoryId: Long,
   val email: String
 )

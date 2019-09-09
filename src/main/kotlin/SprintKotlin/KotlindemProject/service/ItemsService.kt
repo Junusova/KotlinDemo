@@ -5,25 +5,34 @@ import SprintKotlin.KotlindemProject.domain.UpdateItemRequest
 import SprintKotlin.KotlindemProject.model.Category
 import SprintKotlin.KotlindemProject.model.Items
 import SprintKotlin.KotlindemProject.repo.CategoryRepository
+import SprintKotlin.KotlindemProject.repo.ItemsRepository
 import org.springframework.stereotype.Service
 
 interface ItemsService {
   fun create(createItemRequest: CreateItemRequest): Items
   fun update(updateItemRequest: UpdateItemRequest, id: Long): Items
   fun getById(id: Long): Category?
+  fun getItemById(id: Long): Items
 }
 
 @Service
 class ItemServiceImpl(
-  private val categoryRepository: CategoryRepository
+  private val categoryRepository: CategoryRepository,
+  private val itemsRepository: ItemsRepository
 ) : ItemsService {
+
   override fun update(updateItemRequest: UpdateItemRequest, id: Long): Items {
-    val updateIem =
+    val updateIem = getItemById(id)
 
-
-
+    updateIem.apply {
+      categories = updateItemRequest.category
+      name = updateItemRequest.name
+      amount = updateItemRequest.amount
+      price = updateItemRequest.price
+      description = updateItemRequest.description
+    }
+    return itemsRepository.save(updateIem)
   }
-
 
 
   override fun create(createItemRequest: CreateItemRequest): Items {
@@ -40,6 +49,8 @@ class ItemServiceImpl(
   }
 
   override fun getById(id: Long): Category? = categoryRepository.getOne(id)
+
+  override fun getItemById(id: Long): Items = itemsRepository.getOne(id)
 }
 
 

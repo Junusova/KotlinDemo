@@ -39,7 +39,6 @@ class DefaultItemsService(
     val updateItem: Items = itemsService.update(updateItemRequest, id)
 
     return itemsDtoMapper.convertToDto(updateItem)
-
   }
 
 //

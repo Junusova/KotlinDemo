@@ -20,6 +20,7 @@ data class UpdateItemRequest(
   val amount: BigDecimal,
   val price: BigDecimal,
   val description: String,
-  val category: CategoryDto,
+  val category: Category?,
   val email: String
+
 )

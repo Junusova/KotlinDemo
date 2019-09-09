@@ -5,9 +5,12 @@ import SprintKotlin.KotlindemProject.domain.UpdateItemRequest
 import SprintKotlin.KotlindemProject.dto.items.CreateItemsDto
 import SprintKotlin.KotlindemProject.dto.items.ItemsDto
 import SprintKotlin.KotlindemProject.dto.items.UpdateItemsDto
+import SprintKotlin.KotlindemProject.model.Category
 import SprintKotlin.KotlindemProject.model.Items
+import SprintKotlin.KotlindemProject.service.CategoryService
 import SprintKotlin.KotlindemProject.service.ItemsService
 import SprintKotlin.KotlindemProject.service.requestmapper.CategoryDtoMapperService
+import org.springframework.data.jpa.domain.AbstractPersistable_.id
 import org.springframework.stereotype.Service
 
 interface ItemsRequestMapper {
@@ -19,9 +22,11 @@ interface ItemsRequestMapper {
 @Service
 class ItemEndpointImpl(
   private val categoryDtoMapper: CategoryDtoMapperService,
-  private val itemService: ItemsService
+  private val itemService: ItemsService,
+private val categoryService: CategoryService
 ) : ItemsRequestMapper {
   override fun convertToDtoUpdateItemRequest(updateItemsDto: UpdateItemsDto): UpdateItemRequest {
+    val category: Category =  categoryService.getItemById(updateItemsDto.categoryId)
 
   }
 

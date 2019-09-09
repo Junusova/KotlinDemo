@@ -27,7 +27,7 @@ class ItemEndpointImpl(
 
 
   override fun convertToDtoUpdateItemRequest(updateItemsDto: UpdateItemsDto): UpdateItemRequest {
-    val category: Category = categoryService.getItemById(updateItemsDto.categoryId)
+    val category: Category = categoryService.getCategoryById(updateItemsDto.categoryId)
 
     return UpdateItemRequest(
       name = updateItemsDto.name,

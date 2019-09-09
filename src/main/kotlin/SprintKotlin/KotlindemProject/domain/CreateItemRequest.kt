@@ -1,6 +1,5 @@
 package SprintKotlin.KotlindemProject.domain
 
-import SprintKotlin.KotlindemProject.dto.category.CategoryDto
 import SprintKotlin.KotlindemProject.model.Category
 import java.math.BigDecimal
 

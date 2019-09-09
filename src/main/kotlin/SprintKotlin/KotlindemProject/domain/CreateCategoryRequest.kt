@@ -9,7 +9,6 @@ data class CreateCategoryRequest (
 )
 
 data class UpdateCategoryRequest (
-  val id: Long,
   val name: String,
   val description: String,
   val amount: BigDecimal

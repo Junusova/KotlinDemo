@@ -24,30 +24,16 @@ interface CategoryService {
 @Service
 class DefaultCategoryService(
   private val categoryRepository: CategoryRepository
-) : CategoryService {
-  override fun create(category: Category): Category {
-    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-  }
+) : CategoryDtoService {
 
   override fun update(updateCategoryDto: UpdateCategoryDto, id: Long): CategoryDto {
     TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
   }
 
-  override fun findById(id: Long): CategoryDto {
+  override fun create(createCategoryDto: CreateCategoryDto): CategoryDto {
     TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
   }
 
-  override fun findByName(name: String): CategoryDto {
-    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-  }
-
-  override fun findByDescription(description: String) {
-    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-  }
-
-  override fun delete(id: Long) {
-    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-  }
 
 
   override fun getItemById(id: Long): Category  = categoryRepository.getOne(id)

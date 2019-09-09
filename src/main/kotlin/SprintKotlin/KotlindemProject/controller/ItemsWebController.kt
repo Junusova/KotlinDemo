@@ -3,21 +3,22 @@ package SprintKotlin.KotlindemProject.controller
 import SprintKotlin.KotlindemProject.dto.items.ItemsDto
 import SprintKotlin.KotlindemProject.dto.items.CreateItemsDto
 import SprintKotlin.KotlindemProject.dto.items.UpdateItemsDto
+import SprintKotlin.KotlindemProject.service.ItemDtoService
 import SprintKotlin.KotlindemProject.service.ItemsService
 import org.springframework.web.bind.annotation.*
 import java.math.BigDecimal
 
 @RestController
 @RequestMapping("/api/items")
-class ItemsWebController(private val itemsService: ItemsService) {
+class ItemsWebController(private val itemsDtoService: ItemDtoService) {
 
   @PostMapping("/create")
   fun create(@RequestBody createItemsDto: CreateItemsDto): ItemsDto =
-      itemsService.create(createItemsDto)
+      itemsDtoService.create(createItemsDto)
 
   @GetMapping("/findById/{id}")
   fun findById(@PathVariable id: Long): ItemsDto =
-    itemsService.findById(id)
+    itemsDtoService.findById(id)
 
   @GetMapping("/findByName/{name}")
   fun findByName(@PathVariable name: String): ItemsDto =
@@ -44,7 +45,7 @@ class ItemsWebController(private val itemsService: ItemsService) {
   fun update(
     @PathVariable id: Long,
     @RequestBody updateItemsDto: UpdateItemsDto): ItemsDto =
-    itemsService.update(updateItemsDto, id)
+    itemsDtoService.update(updateItemsDto, id)
 
   @DeleteMapping("/{id}")
   fun delete(@PathVariable id: Long) = itemsService.delete(id)

@@ -1,43 +1,34 @@
 package SprintKotlin.KotlindemProject.service
 
+import SprintKotlin.KotlindemProject.domain.CreateCategoryRequest
 import SprintKotlin.KotlindemProject.dto.category.CategoryDto
 import SprintKotlin.KotlindemProject.dto.category.CreateCategoryDto
 import SprintKotlin.KotlindemProject.dto.category.UpdateCategoryDto
+import SprintKotlin.KotlindemProject.endpoint.impl.CategoriesRequestMapper
 import SprintKotlin.KotlindemProject.model.Category
 import SprintKotlin.KotlindemProject.repo.CategoryRepository
-import org.eclipse.jdt.internal.compiler.parser.Parser.name
 import org.springframework.stereotype.Service
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestBody
-
-
-interface CategoryService {
-  fun create(category: Category): Category
-  fun update(updateCategoryDto: UpdateCategoryDto, id: Long): CategoryDto
-  fun findById(id: Long): CategoryDto
-  fun findByName(name: String): CategoryDto
-  fun findByDescription(description: String)
-  fun delete(id: Long)
-  fun getItemById(id: Long) : Category
-}
 
 @Service
 class DefaultCategoryService(
-  private val categoryRepository: CategoryRepository
+  private val categoryRepository: CategoryRepository,
+  private val categoryDtoMapper: CategoriesRequestMapper,
+  private val categoryService: CategoryService
 ) : CategoryDtoService {
+
+  override fun getCategoryById(id: Long): Category = categoryRepository.getOne(id)
 
   override fun update(updateCategoryDto: UpdateCategoryDto, id: Long): CategoryDto {
     TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
   }
 
   override fun create(createCategoryDto: CreateCategoryDto): CategoryDto {
-    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    val createCategoryRequest: CreateCategoryRequest =
+      categoryDtoMapper.convertToCreateCategoryRequest(createCategoryDto)
+
+    val createCategory: Category = categoryService.create(createCategoryRequest)
+
+    return categoryDtoMapper.convertToDto(createCategory)
+
   }
-
-
-
-  override fun getItemById(id: Long): Category  = categoryRepository.getOne(id)
-
-
-
 }

@@ -7,3 +7,10 @@ data class CreateCategoryRequest (
   val description: String,
   val amount: BigDecimal
 )
+
+data class UpdateCategoryRequest (
+  val id: Long,
+  val name: String,
+  val description: String,
+  val amount: BigDecimal
+)

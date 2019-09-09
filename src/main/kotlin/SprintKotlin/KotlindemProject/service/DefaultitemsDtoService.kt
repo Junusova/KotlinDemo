@@ -2,16 +2,13 @@ package SprintKotlin.KotlindemProject.service
 
 import SprintKotlin.KotlindemProject.domain.CreateItemRequest
 import SprintKotlin.KotlindemProject.domain.UpdateItemRequest
-import SprintKotlin.KotlindemProject.dto.category.CreateCategoryDto
 import SprintKotlin.KotlindemProject.dto.items.CreateItemsDto
 import SprintKotlin.KotlindemProject.dto.items.ItemsDto
 import SprintKotlin.KotlindemProject.dto.items.UpdateItemsDto
 import SprintKotlin.KotlindemProject.endpoint.impl.ItemsRequestMapper
-import SprintKotlin.KotlindemProject.model.Category
 import SprintKotlin.KotlindemProject.model.Items
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
-import java.math.BigDecimal
 
 @Service
 class DefaultItemsService(
@@ -37,7 +34,11 @@ class DefaultItemsService(
   @Transactional
   override fun update(updateItemsDto: UpdateItemsDto, id: Long): ItemsDto {
     val updateItemRequest: UpdateItemRequest =
-        itemRequestMapper.convertToCreateItemRequest()
+      itemRequestMapper.convertToDtoUpdateItemRequest(updateItemsDto)
+
+    val updateItem: Items = itemsService.update(updateItemRequest, id)
+
+    return itemsDtoMapper.convertToDto(updateItem)
 
   }
 
@@ -156,4 +157,4 @@ class DefaultItemsService(
 //  }
 
 
-  }
+}

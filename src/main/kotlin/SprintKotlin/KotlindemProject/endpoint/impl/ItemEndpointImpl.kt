@@ -10,7 +10,6 @@ import SprintKotlin.KotlindemProject.model.Items
 import SprintKotlin.KotlindemProject.service.CategoryService
 import SprintKotlin.KotlindemProject.service.ItemsService
 import SprintKotlin.KotlindemProject.service.requestmapper.CategoryDtoMapperService
-import org.springframework.data.jpa.domain.AbstractPersistable_.id
 import org.springframework.stereotype.Service
 
 interface ItemsRequestMapper {
@@ -23,13 +22,22 @@ interface ItemsRequestMapper {
 class ItemEndpointImpl(
   private val categoryDtoMapper: CategoryDtoMapperService,
   private val itemService: ItemsService,
-private val categoryService: CategoryService
+  private val categoryService: CategoryService
 ) : ItemsRequestMapper {
+
+
   override fun convertToDtoUpdateItemRequest(updateItemsDto: UpdateItemsDto): UpdateItemRequest {
-    val category: Category =  categoryService.getItemById(updateItemsDto.categoryId)
+    val category: Category = categoryService.getItemById(updateItemsDto.categoryId)
 
+    return UpdateItemRequest(
+      name = updateItemsDto.name,
+      email = updateItemsDto.email,
+      amount = updateItemsDto.amount,
+      price = updateItemsDto.price,
+      description = updateItemsDto.description,
+      category = category
+    )
   }
-
 
   override fun convertToCreateItemRequest(createItemsDto: CreateItemsDto): CreateItemRequest {
     val category = itemService.getById(createItemsDto.category)

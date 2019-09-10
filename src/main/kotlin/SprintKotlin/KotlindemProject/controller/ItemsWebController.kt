@@ -36,7 +36,7 @@ class ItemsWebController(private val itemsDtoService: ItemDtoService) {
   fun findByDescription(@PathVariable description: String): ItemsDto =
      itemsService.findByDescription(description)
 
-  @GetMapping("/findByCategory/{category}")
+  @GetMapping("/findByCategory/{categoryId}")
   fun findByCategory(@PathVariable category: Long): ItemsDto =
      itemsService.findByCategory(category)
 

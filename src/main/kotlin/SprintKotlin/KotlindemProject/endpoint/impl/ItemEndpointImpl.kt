@@ -40,7 +40,7 @@ class ItemEndpointImpl(
   }
 
   override fun convertToCreateItemRequest(createItemsDto: CreateItemsDto): CreateItemRequest {
-    val category = itemService.getById(createItemsDto.category)
+    val category = itemService.getById(createItemsDto.categoryId)
     return CreateItemRequest(
       email = createItemsDto.email,
       name = createItemsDto.name,

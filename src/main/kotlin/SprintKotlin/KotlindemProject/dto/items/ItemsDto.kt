@@ -10,8 +10,7 @@ data class ItemsDto(
   val name: String,
   val amount: BigDecimal,
   val price: BigDecimal,
-  val description: String,
-  val category: CategoryDto
+  val description: String
 )
 
 data class CreateItemsDto(
@@ -20,7 +19,7 @@ data class CreateItemsDto(
   val amount: BigDecimal,
   val price: BigDecimal,
   val description: String,
-  val category: Long
+  val categoryId: Long
 )
 
 data class UpdateItemsDto(

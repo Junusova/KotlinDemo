@@ -20,6 +20,6 @@ interface ItemsRepository : JpaRepository<Items, Long> {
   @Query("select description from Items description where Items.price = :description", nativeQuery = true)
   fun findByDescription(@Param("description") description: String): Items
 
-  @Query("select category from Items category where Items.price = :category", nativeQuery = true)
-  fun findByCategory(@Param("category") category: String): Items
+  @Query("select categoryId from Items categoryId where Items.price = :categoryId", nativeQuery = true)
+  fun findByCategory(@Param("categoryId") category: String): Items
 }

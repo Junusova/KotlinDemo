@@ -4,10 +4,10 @@ import java.math.BigDecimal
 import javax.persistence.*
 
 @Entity
-@Table(name = "category")
+@Table(name = "categoryId")
 data class Category (
 
-  @OneToMany(mappedBy = "category",fetch = FetchType.LAZY)
+  @OneToMany(mappedBy = "categoryId",fetch = FetchType.LAZY)
   var items: List<Items>,
 
   @Column(name = "name")

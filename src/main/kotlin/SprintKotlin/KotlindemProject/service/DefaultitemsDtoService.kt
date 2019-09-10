@@ -47,7 +47,7 @@ class DefaultItemsService(
 //    val items = CreateItemRequest(
 //      name = updateItemsDto.name,
 //      amount = updateItemsDto.amount,
-//      category = updateItemsDto.category,
+//      categoryId = updateItemsDto.categoryId,
 //      price = updateItemsDto.price,
 //      description = updateItemsDto.description,
 //      email = updateItemsDto.email
@@ -56,7 +56,7 @@ class DefaultItemsService(
 //    return ItemsDto(
 //      name = items.name,
 //      amount = items.amount,
-//      category = items.category,
+//      categoryId = items.categoryId,
 //      price = items.price,
 //      description = items.description,
 //      isActive = items.is_active,
@@ -70,7 +70,7 @@ class DefaultItemsService(
 //    return ItemsDto(
 //      name = items.name,
 //      amount = items.amount,
-//      category = items.category,
+//      categoryId = items.categoryId,
 //      price = items.price,
 //      description = items.description,
 //      isActive = items.is_active,
@@ -85,7 +85,7 @@ class DefaultItemsService(
 //    return ItemsDto(
 //      name = items.name,
 //      amount = items.amount,
-//      category = items.category,
+//      categoryId = items.categoryId,
 //      price = items.price,
 //      description = items.description,
 //      isActive = items.is_active,
@@ -99,7 +99,7 @@ class DefaultItemsService(
 //    return ItemsDto(
 //      name = items.name,
 //      amount = items.amount,
-//      category = items.category,
+//      categoryId = items.categoryId,
 //      price = items.price,
 //      description = items.description,
 //      isActive = items.is_active,
@@ -113,7 +113,7 @@ class DefaultItemsService(
 //    return ItemsDto(
 //      name = items.name,
 //      amount = items.amount,
-//      category = items.category,
+//      categoryId = items.categoryId,
 //      price = items.price,
 //      description = items.description,
 //      isActive = items.is_active,
@@ -127,7 +127,7 @@ class DefaultItemsService(
 //    return ItemsDto(
 //      name = items.name,
 //      amount = items.amount,
-//      category = items.category,
+//      categoryId = items.categoryId,
 //      price = items.price,
 //      description = items.description,
 //      isActive = items.is_active,
@@ -136,12 +136,12 @@ class DefaultItemsService(
 //  }
 //
 //  @Transactional(readOnly = true)
-//  override fun findByCategory(category: String): ItemsDto {
-//    val items = itemsRepository.findByCategory(category)
+//  override fun findByCategory(categoryId: String): ItemsDto {
+//    val items = itemsRepository.findByCategory(categoryId)
 //    return ItemsDto(
 //      name = items.name,
 //      amount = items.amount,
-//      category = items.category,
+//      categoryId = items.categoryId,
 //      price = items.price,
 //      description = items.description,
 //      isActive = items.is_active,

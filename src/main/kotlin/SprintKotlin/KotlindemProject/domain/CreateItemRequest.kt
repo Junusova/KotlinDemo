@@ -13,7 +13,6 @@ data class CreateItemRequest(
   val isActive: Boolean
 )
 
-
 data class UpdateItemRequest(
   val name: String,
   val amount: BigDecimal,

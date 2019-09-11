@@ -21,8 +21,8 @@ class CategoryEndpointImpl : CategoriesRequestMapper {
     return CategoryDto(
       name = category.name,
       description = category.description,
-      amount = category.amount
-    //  id = category.id!!
+      amount = category.amount,
+      id = category.id!!
     )
   }
 

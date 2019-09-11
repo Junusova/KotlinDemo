@@ -1,7 +1,5 @@
 package SprintKotlin.KotlindemProject.dto.items
 
-import SprintKotlin.KotlindemProject.dto.category.CategoryDto
-import SprintKotlin.KotlindemProject.dto.category.UpdateCategoryDto
 import java.math.BigDecimal
 
 data class ItemsDto(

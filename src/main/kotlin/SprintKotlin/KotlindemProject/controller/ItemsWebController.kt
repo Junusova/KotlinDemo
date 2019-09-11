@@ -16,29 +16,29 @@ class ItemsWebController(private val itemsDtoService: ItemDtoService) {
   fun create(@RequestBody createItemsDto: CreateItemsDto): ItemsDto =
       itemsDtoService.create(createItemsDto)
 
-  @GetMapping("/findById/{id}")
-  fun findById(@PathVariable id: Long): ItemsDto =
-    itemsDtoService.findById(id)
-
-  @GetMapping("/findByName/{name}")
-  fun findByName(@PathVariable name: String): ItemsDto =
-   itemsService.findByName(name)
-
-  @GetMapping("/findByAmount/{amount}")
-  fun findByAmount(@PathVariable amount: Int): ItemsDto =
-    itemsService.findByAmount(amount)
-
-  @GetMapping("/findByPrice/{price}")
-  fun findByPrice(@PathVariable price: BigDecimal): ItemsDto =
-     itemsService.findByPrice(price)
-
-  @GetMapping("/findByDescription/{description}")
-  fun findByDescription(@PathVariable description: String): ItemsDto =
-     itemsService.findByDescription(description)
-
-  @GetMapping("/findByCategory/{categoryId}")
-  fun findByCategory(@PathVariable category: Long): ItemsDto =
-     itemsService.findByCategory(category)
+//  @GetMapping("/findById/{id}")
+//  fun findById(@PathVariable id: Long): ItemsDto =
+//    itemsDtoService.findById(id)
+//
+//  @GetMapping("/findByName/{name}")
+//  fun findByName(@PathVariable name: String): ItemsDto =
+//   itemsService.findByName(name)
+//
+//  @GetMapping("/findByAmount/{amount}")
+//  fun findByAmount(@PathVariable amount: Int): ItemsDto =
+//    itemsService.findByAmount(amount)
+//
+//  @GetMapping("/findByPrice/{price}")
+//  fun findByPrice(@PathVariable price: BigDecimal): ItemsDto =
+//     itemsService.findByPrice(price)
+//
+//  @GetMapping("/findByDescription/{description}")
+//  fun findByDescription(@PathVariable description: String): ItemsDto =
+//     itemsService.findByDescription(description)
+//
+//  @GetMapping("/findByCategory/{categoryId}")
+//  fun findByCategory(@PathVariable category: Long): ItemsDto =
+//     itemsService.findByCategory(category)
 
 
   @PutMapping("update/{id}")
@@ -47,8 +47,8 @@ class ItemsWebController(private val itemsDtoService: ItemDtoService) {
     @RequestBody updateItemsDto: UpdateItemsDto): ItemsDto =
     itemsDtoService.update(updateItemsDto, id)
 
-  @DeleteMapping("/{id}")
-  fun delete(@PathVariable id: Long) = itemsService.delete(id)
+//  @DeleteMapping("/{id}")
+//  fun delete(@PathVariable id: Long) = itemsService.delete(id)
 
 }
 

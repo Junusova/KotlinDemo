@@ -7,6 +7,7 @@ import SprintKotlin.KotlindemProject.dto.items.ItemsDto
 import SprintKotlin.KotlindemProject.dto.items.UpdateItemsDto
 import SprintKotlin.KotlindemProject.endpoint.impl.ItemsRequestMapper
 import SprintKotlin.KotlindemProject.model.Items
+import SprintKotlin.KotlindemProject.repo.ItemsRepository
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
@@ -15,8 +16,11 @@ class DefaultItemsService(
 
   private val itemRequestMapper: ItemsRequestMapper,
   private val itemsService: ItemsService,
-  private val itemsDtoMapper: ItemsRequestMapper
+  private val itemsDtoMapper: ItemsRequestMapper,
+  private val itemsRepository: ItemsRepository
 ) : ItemDtoService {
+
+  override fun findBy(id: Long): Items = itemsRepository.getOne(id)
 
 
   @Transactional

@@ -25,7 +25,7 @@ class ItemServiceImpl(
     val updateIem = getItemById(id)
 
     updateIem.apply {
-      categories = updateItemRequest.category
+      category = updateItemRequest.category
       name = updateItemRequest.name
       amount = updateItemRequest.amount
       price = updateItemRequest.price
@@ -37,7 +37,7 @@ class ItemServiceImpl(
 
   override fun create(createItemRequest: CreateItemRequest): Items {
     val item = Items(
-      categories = createItemRequest.category,
+      category = createItemRequest.category,
       name = createItemRequest.name,
       amount = createItemRequest.amount,
       price = createItemRequest.price,

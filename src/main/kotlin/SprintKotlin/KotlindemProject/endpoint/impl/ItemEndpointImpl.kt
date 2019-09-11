@@ -9,7 +9,6 @@ import SprintKotlin.KotlindemProject.model.Category
 import SprintKotlin.KotlindemProject.model.Items
 import SprintKotlin.KotlindemProject.service.CategoryService
 import SprintKotlin.KotlindemProject.service.ItemsService
-import SprintKotlin.KotlindemProject.service.requestmapper.CategoryDtoMapperService
 import org.springframework.stereotype.Service
 
 interface ItemsRequestMapper {
@@ -20,7 +19,6 @@ interface ItemsRequestMapper {
 
 @Service
 class ItemEndpointImpl(
-  private val categoryDtoMapper: CategoryDtoMapperService,
   private val itemService: ItemsService,
   private val categoryService: CategoryService
 ) : ItemsRequestMapper {
@@ -53,13 +51,11 @@ class ItemEndpointImpl(
   }
 
   override fun convertToDto(items: Items): ItemsDto {
-    val category = categoryDtoMapper.convertToDto(items.categories!!)
     return ItemsDto(
       id = items.id!!,
       name = items.name,
       description = items.description,
       amount = items.amount,
-      category = category,
       isActive = true,
       price = items.price
     )

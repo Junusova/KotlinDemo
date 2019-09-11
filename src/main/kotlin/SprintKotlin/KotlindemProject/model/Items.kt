@@ -8,8 +8,8 @@ import javax.persistence.*
 data class Items(
 
   @ManyToOne(fetch = FetchType.EAGER)
-  @JoinColumn(name = "categories_id")
-  var categories: Category?,
+  @JoinColumn(name = "category_id", nullable = false)
+  var category: Category?,
 
   @Column(name = "name")
   var name: String,

@@ -18,7 +18,12 @@ interface CategoriesRequestMapper {
 @Service
 class CategoryEndpointImpl : CategoriesRequestMapper {
   override fun convertToDto(category: Category): CategoryDto {
-    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    return CategoryDto(
+      name = category.name,
+      description = category.description,
+      amount = category.amount
+    //  id = category.id!!
+    )
   }
 
   override fun convertToUpdateCategoryRequest(updateCategoryDto: UpdateCategoryDto): UpdateCategoryRequest {

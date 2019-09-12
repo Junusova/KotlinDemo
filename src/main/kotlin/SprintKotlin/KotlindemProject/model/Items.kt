@@ -7,7 +7,7 @@ import javax.persistence.*
 @Table(name = "items")
 data class Items(
 
-  @ManyToOne(fetch = FetchType.EAGER)
+  @ManyToOne()
   @JoinColumn(name = "category_id", nullable = false)
   var category: Category?,
 

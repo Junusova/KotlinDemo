@@ -44,7 +44,7 @@ class CategoryServiceImpl(
       items = listOf()
 
     )
-    return category
+    return  categoryRepository.save(category)
   }
 
   override fun getCategoryById(id: Long): Category = categoryRepository.getOne(id)

@@ -14,6 +14,7 @@ interface CategoryService {
   fun update(updateCategoryRequest: UpdateCategoryRequest, id: Long): Category
   fun getCategoryById(id: Long): Category
   fun getItemById(id: Long): Items
+
 }
 
 @Service

@@ -4,7 +4,6 @@ import SprintKotlin.KotlindemProject.dto.category.CategoryDto
 import SprintKotlin.KotlindemProject.dto.category.CreateCategoryDto
 import SprintKotlin.KotlindemProject.dto.category.UpdateCategoryDto
 import SprintKotlin.KotlindemProject.service.CategoryDtoService
-import SprintKotlin.KotlindemProject.service.CategoryService
 import org.springframework.web.bind.annotation.*
 
 
@@ -23,6 +22,6 @@ class CategoryWebController (private val categoryDtoService: CategoryDtoService)
   ): CategoryDto =
    categoryDtoService.update(updateCategoryDto, id)
 
-//  @DeleteMapping("/{id}")
-//  fun delete(@PathVariable id: Long) = categoryDtoService.delete(id)
+  @DeleteMapping("/{id}")
+  fun delete(@PathVariable id: Long) = categoryDtoService.delete(id)
 }

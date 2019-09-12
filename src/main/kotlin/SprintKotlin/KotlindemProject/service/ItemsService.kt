@@ -45,7 +45,7 @@ class ItemServiceImpl(
       isActive = createItemRequest.isActive
     )
 
-    return item
+    return itemsRepository.save(item)
   }
 
   override fun getById(id: Long): Category? = categoryRepository.getOne(id)

@@ -1,6 +1,7 @@
 package SprintKotlin.KotlindemProject.service
 
 import SprintKotlin.KotlindemProject.domain.CreateCategoryRequest
+import SprintKotlin.KotlindemProject.domain.UpdateCategoryRequest
 import SprintKotlin.KotlindemProject.dto.category.CategoryDto
 import SprintKotlin.KotlindemProject.dto.category.CreateCategoryDto
 import SprintKotlin.KotlindemProject.dto.category.UpdateCategoryDto
@@ -13,13 +14,20 @@ import org.springframework.stereotype.Service
 class DefaultCategoryService(
   private val categoryRepository: CategoryRepository,
   private val categoryDtoMapper: CategoriesRequestMapper,
-  private val categoryService: CategoryService
+  private val categoryService: CategoryService,
+  private val categoryRequestMapper: CategoriesRequestMapper
+
 ) : CategoryDtoService {
 
   override fun getCategoryById(id: Long): Category = categoryRepository.getOne(id)
 
   override fun update(updateCategoryDto: UpdateCategoryDto, id: Long): CategoryDto {
-    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    val updateCategoryRequest: UpdateCategoryRequest =
+      categoryRequestMapper.convertToUpdateCategoryRequest(updateCategoryDto)
+
+    val updateCategory: Category = categoryService.update(updateCategoryRequest, id)
+
+    return categoryDtoMapper.convertToDto(updateCategory)
   }
 
   override fun create(createCategoryDto: CreateCategoryDto): CategoryDto {
@@ -29,6 +37,5 @@ class DefaultCategoryService(
     val createCategory: Category = categoryService.create(createCategoryRequest)
 
     return categoryDtoMapper.convertToDto(createCategory)
-
   }
 }

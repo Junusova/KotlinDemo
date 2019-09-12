@@ -9,4 +9,5 @@ interface CategoryDtoService {
   fun create(createCategoryDto: CreateCategoryDto): CategoryDto
   fun update(updateCategoryDto: UpdateCategoryDto,id: Long): CategoryDto
   fun getCategoryById(id: Long) : Category
+  fun delete(id: Long)
 }

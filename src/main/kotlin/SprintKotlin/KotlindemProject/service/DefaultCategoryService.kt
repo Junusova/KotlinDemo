@@ -5,6 +5,7 @@ import SprintKotlin.KotlindemProject.domain.UpdateCategoryRequest
 import SprintKotlin.KotlindemProject.dto.category.CategoryDto
 import SprintKotlin.KotlindemProject.dto.category.CreateCategoryDto
 import SprintKotlin.KotlindemProject.dto.category.UpdateCategoryDto
+import SprintKotlin.KotlindemProject.dtoService.CategoryDtoService
 import SprintKotlin.KotlindemProject.endpoint.impl.CategoriesRequestMapper
 import SprintKotlin.KotlindemProject.model.Category
 import SprintKotlin.KotlindemProject.repo.CategoryRepository
@@ -18,6 +19,9 @@ class DefaultCategoryService(
   private val categoryRequestMapper: CategoriesRequestMapper
 
 ) : CategoryDtoService {
+  override fun delete(id: Long) {
+    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+  }
 
   override fun getCategoryById(id: Long): Category = categoryRepository.getOne(id)
 

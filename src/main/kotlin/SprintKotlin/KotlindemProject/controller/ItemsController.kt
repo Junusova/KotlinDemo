@@ -3,14 +3,12 @@ package SprintKotlin.KotlindemProject.controller
 import SprintKotlin.KotlindemProject.dto.items.ItemsDto
 import SprintKotlin.KotlindemProject.dto.items.CreateItemsDto
 import SprintKotlin.KotlindemProject.dto.items.UpdateItemsDto
-import SprintKotlin.KotlindemProject.service.ItemDtoService
-import SprintKotlin.KotlindemProject.service.ItemsService
+import SprintKotlin.KotlindemProject.dtoService.ItemDtoService
 import org.springframework.web.bind.annotation.*
-import java.math.BigDecimal
 
 @RestController
 @RequestMapping("/api/items")
-class ItemsWebController(private val itemsDtoService: ItemDtoService) {
+class ItemsController(private val itemsDtoService: ItemDtoService) {
 
   @PostMapping("/create")
   fun create(@RequestBody createItemsDto: CreateItemsDto): ItemsDto =

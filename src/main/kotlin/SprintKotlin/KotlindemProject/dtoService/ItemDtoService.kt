@@ -1,4 +1,4 @@
-package SprintKotlin.KotlindemProject.service
+package SprintKotlin.KotlindemProject.dtoService
 
 import SprintKotlin.KotlindemProject.dto.items.CreateItemsDto
 import SprintKotlin.KotlindemProject.dto.items.ItemsDto

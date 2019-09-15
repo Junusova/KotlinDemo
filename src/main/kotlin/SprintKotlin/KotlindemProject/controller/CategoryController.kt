@@ -3,13 +3,13 @@ package SprintKotlin.KotlindemProject.controller
 import SprintKotlin.KotlindemProject.dto.category.CategoryDto
 import SprintKotlin.KotlindemProject.dto.category.CreateCategoryDto
 import SprintKotlin.KotlindemProject.dto.category.UpdateCategoryDto
-import SprintKotlin.KotlindemProject.service.CategoryDtoService
+import SprintKotlin.KotlindemProject.dtoService.CategoryDtoService
 import org.springframework.web.bind.annotation.*
 
 
 @RestController
 @RequestMapping("/api/category")
-class CategoryWebController (private val categoryDtoService: CategoryDtoService) {
+class CategoryController (private val categoryDtoService: CategoryDtoService) {
 
   @PostMapping("/create")
   fun create(@RequestBody createCategoryDto: CreateCategoryDto): CategoryDto =

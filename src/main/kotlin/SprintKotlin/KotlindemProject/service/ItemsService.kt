@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service
 interface ItemsService {
   fun create(createItemRequest: CreateItemRequest): Items
   fun update(updateItemRequest: UpdateItemRequest, id: Long): Items
-  fun getById(id: Long): Category?
+  fun getById(id: Long): Category
   fun getItemById(id: Long): Items
 }
 
@@ -48,7 +48,7 @@ class ItemServiceImpl(
     return itemsRepository.save(item)
   }
 
-  override fun getById(id: Long): Category? = categoryRepository.getOne(id)
+  override fun getById(id: Long): Category = categoryRepository.getOne(id)
 
   override fun getItemById(id: Long): Items = itemsRepository.getOne(id)
 }

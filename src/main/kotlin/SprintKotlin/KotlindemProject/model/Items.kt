@@ -9,7 +9,7 @@ data class Items(
 
   @ManyToOne()
   @JoinColumn(name = "category_id", nullable = false)
-  var category: Category?,
+  var category: Category,
 
   @Column(name = "name")
   var name: String,
@@ -24,6 +24,6 @@ data class Items(
   var description: String,
 
   @Column(name = "is_active")
-  var isActive: Boolean?
+  var isActive: Boolean
 
 ) : BaseEntity()

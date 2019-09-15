@@ -9,7 +9,7 @@ data class CreateItemRequest(
   val amount: BigDecimal,
   val price: BigDecimal,
   val description: String,
-  val category: Category?,
+  val category: Category,
   val isActive: Boolean
 )
 
@@ -18,7 +18,7 @@ data class UpdateItemRequest(
   val amount: BigDecimal,
   val price: BigDecimal,
   val description: String,
-  val category: Category?,
+  val category: Category,
   val email: String
 
 )

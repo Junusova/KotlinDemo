@@ -5,6 +5,7 @@ import SprintKotlin.KotlindemProject.domain.UpdateItemRequest
 import SprintKotlin.KotlindemProject.dto.items.CreateItemsDto
 import SprintKotlin.KotlindemProject.dto.items.ItemsDto
 import SprintKotlin.KotlindemProject.dto.items.UpdateItemsDto
+import SprintKotlin.KotlindemProject.dtoService.ItemDtoService
 import SprintKotlin.KotlindemProject.endpoint.impl.ItemsRequestMapper
 import SprintKotlin.KotlindemProject.model.Items
 import SprintKotlin.KotlindemProject.repo.ItemsRepository
@@ -19,6 +20,9 @@ class DefaultItemsService(
   private val itemsDtoMapper: ItemsRequestMapper,
   private val itemsRepository: ItemsRepository
 ) : ItemDtoService {
+  override fun delete(id: Long) {
+    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+  }
 
   override fun findBy(id: Long): Items = itemsRepository.getOne(id)
 

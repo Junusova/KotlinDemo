@@ -13,6 +13,7 @@ interface ItemsService {
   fun update(updateItemRequest: UpdateItemRequest, id: Long): Items
   fun getById(id: Long): Category
   fun getItemById(id: Long): Items
+  fun save(items: Items):Items
 }
 
 @Service
@@ -20,6 +21,8 @@ class ItemServiceImpl(
   private val categoryRepository: CategoryRepository,
   private val itemsRepository: ItemsRepository
 ) : ItemsService {
+
+  override fun save(items: Items): Items = itemsRepository.save(items)
 
   override fun update(updateItemRequest: UpdateItemRequest, id: Long): Items {
     val updateIem = getItemById(id)

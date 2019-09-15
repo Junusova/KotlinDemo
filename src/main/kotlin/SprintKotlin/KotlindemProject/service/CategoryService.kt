@@ -14,7 +14,7 @@ interface CategoryService {
   fun update(updateCategoryRequest: UpdateCategoryRequest, id: Long): Category
   fun getCategoryById(id: Long): Category
   fun getItemById(id: Long): Items
-
+  fun save(category: Category): Category
 }
 
 @Service
@@ -23,6 +23,7 @@ class CategoryServiceImpl(
   private val itemsRepository: ItemsRepository
 
 ) : CategoryService {
+  override fun save(category: Category): Category = categoryRepository.save(category)
 
   override fun update(updateCategoryRequest: UpdateCategoryRequest, id: Long): Category {
     val updateCategory = getCategoryById(id)
@@ -45,7 +46,7 @@ class CategoryServiceImpl(
       items = listOf()
 
     )
-    return  categoryRepository.save(category)
+    return categoryRepository.save(category)
   }
 
   override fun getCategoryById(id: Long): Category = categoryRepository.getOne(id)

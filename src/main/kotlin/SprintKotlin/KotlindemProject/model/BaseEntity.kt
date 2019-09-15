@@ -10,6 +10,6 @@ abstract class BaseEntity {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  open var id: Long? = null
+  open var id: Long = 1
 
 }

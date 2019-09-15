@@ -20,3 +20,7 @@ data class UpdateCategoryDto(
   val description: String,
   val amount: BigDecimal
 )
+
+data class GetAllCategoryRequestDto (
+      val name: String
+)

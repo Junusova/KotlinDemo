@@ -1,2 +1,0 @@
-package SprintKotlin.KotlindemProject.domain
-

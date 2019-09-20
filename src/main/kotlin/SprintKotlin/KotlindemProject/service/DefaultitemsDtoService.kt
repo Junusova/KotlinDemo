@@ -20,6 +20,7 @@ class DefaultItemsService(
   private val itemsDtoMapper: ItemsRequestMapper,
   private val itemsRepository: ItemsRepository
 ) : ItemDtoService {
+
   override fun delete(id: Long) {
     TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
   }

@@ -12,4 +12,21 @@ interface UserRequestMapper {
 }
 
 @Service
-class UserEndpointImpl()
+class UserEndpointImpl : UserRequestMapper {
+  override fun convertToDto(user: User): UserDto {
+    return UserDto(
+      id = user.id,
+      email = user.email,
+      password = user.password,
+      passwordConfirm = user.passwordConfirm
+    )
+  }
+
+  override fun convertToCreateUserRequest(createUserDto: CreateUserDto): CreateUserRequest {
+    return CreateUserRequest(
+      email = createUserDto.email,
+      password = createUserDto.password,
+      passwordConfirm = createUserDto.passwordConfirm
+    )
+  }
+}

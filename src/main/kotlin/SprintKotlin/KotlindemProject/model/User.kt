@@ -1,32 +1,36 @@
 package SprintKotlin.KotlindemProject.model
 
-import com.sun.istack.internal.NotNull
-import org.hibernate.annotations.NaturalId
-import javax.persistence.Column
-import javax.persistence.Entity
-import javax.persistence.ManyToMany
-import javax.persistence.Table
+import SprintKotlin.KotlindemProject.enums.UserRole
+import org.springframework.security.core.authority.SimpleGrantedAuthority
+import java.util.stream.Collectors
+import javax.persistence.*
 import javax.validation.constraints.Size
 
 @Entity
 @Table(name = "user")
 
 data class User(
+
+
   @Column(name = "email", nullable = false)
+  @Size(min = 3, max = 255)
   var email: String,
 
-  @NaturalId
-  @Column(name = "username", unique = true, nullable = false)
-  @NotNull
-  @Size(min = 3, max = 255)
-  var username: String = email,
-
   @Column(name = "password")
-  val password: String,
+  var password: String,
 
   @Column(name = "passwordConfirm")
   val passwordConfirm: String,
 
-  @ManyToMany
- val roles: Set<Role>
-) : BaseEntity()
+  @Enumerated(EnumType.STRING)
+  @ElementCollection(fetch = FetchType.EAGER)
+  var roles: Set<UserRole>
+
+) : BaseEntity(){
+    fun getAuthorities(): User {
+      return User(
+        this.email, this.password,
+        this.roles.stream().map { role -> SimpleGrantedAuthority("ROLE_$role") }.collect(Collectors.toSet()) as String
+      )
+    }
+}

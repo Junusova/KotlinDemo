@@ -6,14 +6,17 @@ import SprintKotlin.KotlindemProject.dto.user.UserDto
 import SprintKotlin.KotlindemProject.dtoService.UserDtoService
 import SprintKotlin.KotlindemProject.endpoint.impl.UserRequestMapper
 import SprintKotlin.KotlindemProject.model.User
+import SprintKotlin.KotlindemProject.repo.UserRepository
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
+
 @Service
-class DefaultUserService(
+class DefaultUserService (
   private val userRequestMapper: UserRequestMapper,
   private val userService: UserService,
-  private val userDtoMapper: UserRequestMapper
+  private val userDtoMapper: UserRequestMapper,
+  private val userRepository: UserRepository
 ) : UserDtoService {
 
   @Transactional
@@ -25,4 +28,5 @@ class DefaultUserService(
 
     return userDtoMapper.convertToDto(createUser)
   }
+
 }

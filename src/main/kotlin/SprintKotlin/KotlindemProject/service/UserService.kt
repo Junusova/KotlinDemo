@@ -1,11 +1,9 @@
 package SprintKotlin.KotlindemProject.service
 
-import SprintKotlin.KotlindemProject.domain.CreateUserRequest
 import SprintKotlin.KotlindemProject.model.User
 import SprintKotlin.KotlindemProject.repo.UserRepository
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.security.core.userdetails.UserDetailsService
-import org.springframework.security.core.userdetails.UsernameNotFoundException
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
 
@@ -20,8 +18,8 @@ class UserServiceImpl(
   private val passwordEncoder: PasswordEncoder
 ) : UserDetailsService {
 
-  override fun loadUserByUsername(username: String?): UserDetails {
-    return userRepository.findByEmail(username)?.getAuthorities()
+  override fun loadUserByUsername(username: String): UserDetails {
+    return userRepository.findByEmail(username).getAuthorities()
   }
 
 

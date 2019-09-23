@@ -1,7 +1,9 @@
 package SprintKotlin.KotlindemProject.model
 
 import SprintKotlin.KotlindemProject.enums.UserRole
+import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.authority.SimpleGrantedAuthority
+import org.springframework.security.core.userdetails.UserDetails
 import java.util.stream.Collectors
 import javax.persistence.*
 import javax.validation.constraints.Size
@@ -26,11 +28,32 @@ data class User(
   @ElementCollection(fetch = FetchType.EAGER)
   var roles: Set<UserRole>
 
-) : BaseEntity(){
-    fun getAuthorities(): User {
-      return User(
-        this.email, this.password,
-        this.roles.stream().map { role -> SimpleGrantedAuthority("ROLE_$role") }.collect(Collectors.toSet()) as String
-      )
-    }
+) : UserDetails,BaseEntity() {
+  override fun getAuthorities(): MutableCollection<out GrantedAuthority> {
+    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+  }
+
+  override fun isEnabled(): Boolean {
+    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+  }
+
+  override fun getUsername(): String {
+    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+  }
+
+  override fun isCredentialsNonExpired(): Boolean {
+    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+  }
+
+  override fun getPassword(): String {
+    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+  }
+
+  override fun isAccountNonExpired(): Boolean {
+    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+  }
+
+  override fun isAccountNonLocked(): Boolean {
+    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+  }
 }

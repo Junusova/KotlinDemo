@@ -18,8 +18,8 @@ class UserServiceImpl(
   private val passwordEncoder: PasswordEncoder
 ) : UserDetailsService {
 
-  override fun loadUserByUsername(username: String): UserDetails {
-    return userRepository.findByEmail(username).getAuthorities()
+  override fun loadUserByUsername(username: String): User {
+    return userRepository.findByEmail(username)
   }
 
 

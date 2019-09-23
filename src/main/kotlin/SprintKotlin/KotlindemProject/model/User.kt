@@ -2,9 +2,8 @@ package SprintKotlin.KotlindemProject.model
 
 import SprintKotlin.KotlindemProject.enums.UserRole
 import org.springframework.security.core.GrantedAuthority
-import org.springframework.security.core.authority.SimpleGrantedAuthority
+import org.springframework.security.core.authority.AuthorityUtils
 import org.springframework.security.core.userdetails.UserDetails
-import java.util.stream.Collectors
 import javax.persistence.*
 import javax.validation.constraints.Size
 
@@ -14,46 +13,47 @@ import javax.validation.constraints.Size
 data class User(
 
 
-  @Column(name = "email", nullable = false)
+  @Column(name = "email", nullable = false, unique = true)
   @Size(min = 3, max = 255)
   var email: String,
 
-  @Column(name = "password")
-  var password: String,
-
   @Column(name = "passwordConfirm")
   val passwordConfirm: String,
+
+  @Column(name = "password", nullable = false)
+  private var password: String,
 
   @Enumerated(EnumType.STRING)
   @ElementCollection(fetch = FetchType.EAGER)
   var roles: Set<UserRole>
 
-) : UserDetails,BaseEntity() {
+) : UserDetails, BaseEntity() {
+
   override fun getAuthorities(): MutableCollection<out GrantedAuthority> {
-    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    return AuthorityUtils.createAuthorityList("VALID_USER_ROLE")
   }
 
   override fun isEnabled(): Boolean {
-    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    return true
   }
 
   override fun getUsername(): String {
-    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    return email
   }
 
   override fun isCredentialsNonExpired(): Boolean {
-    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    return true
   }
 
   override fun getPassword(): String {
-    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    return password
   }
 
   override fun isAccountNonExpired(): Boolean {
-    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    return true
   }
 
   override fun isAccountNonLocked(): Boolean {
-    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    return true
   }
 }

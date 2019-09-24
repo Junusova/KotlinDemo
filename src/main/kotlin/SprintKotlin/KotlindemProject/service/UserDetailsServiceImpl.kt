@@ -1,6 +1,11 @@
 package SprintKotlin.KotlindemProject.service
 
+import SprintKotlin.KotlindemProject.domain.CreateUserRequest
+import SprintKotlin.KotlindemProject.dto.user.CreateUserDto
+import SprintKotlin.KotlindemProject.dto.user.UserDto
+import SprintKotlin.KotlindemProject.dtoService.UserDtoService
 import SprintKotlin.KotlindemProject.endpoint.impl.UserRequestMapper
+import SprintKotlin.KotlindemProject.model.User
 import SprintKotlin.KotlindemProject.repo.UserRepository
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.authority.SimpleGrantedAuthority
@@ -15,36 +20,16 @@ import java.util.*
 class UserDetailsServiceImpl(
   private val userRequestMapper: UserRequestMapper,
   private val userService: UserService,
-  private val userDtoMapper: UserRequestMapper,
-  private val userRepository: UserRepository
-) : UserDetailsService {
+  private val userDtoMapper: UserRequestMapper
 
+) : UserDtoService {
+  override fun create(createUserDto: CreateUserDto): UserDto {
 
-  @Transactional(readOnly = true)
-  override fun loadUserByUsername(username: String): UserDetails {
-    val user = userRepository!!.findByUsername(username)
+    val createUserRequest: CreateUserRequest =
+      userRequestMapper.convertToCreateUserRequest(createUserDto)
 
-    val grantedAuthorities = HashSet<GrantedAuthority>()
-    for (role in user.getRoles()) {
-      grantedAuthorities.add(SimpleGrantedAuthority(role.getName()))
-    }
+    val createUser: User = userService.create(createUserRequest)
 
-    return org.springframework.security.core.userdetails.User(
-      user.getUsername(),
-      user.getPassword(),
-      grantedAuthorities
-    )
+    return userDtoMapper.convertToDto(createUser)
   }
 }
-
-//  @Transactional
-//  override fun create(createUserDto: CreateUserDto): UserDto {
-//    val createUserRequest: CreateUserRequest =
-//      userRequestMapper.convertToCreateUserRequest(createUserDto)
-//
-//    val createUser: User = userService.create(createUserRequest)
-//
-//    return userDtoMapper.convertToDto(createUser)
-//  }
-//
-//}

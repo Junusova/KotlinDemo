@@ -11,6 +11,7 @@ data class Role (
 
   @ManyToMany(mappedBy = "roles")
   val users: Set<User>
+
 ): BaseEntity()
 
 

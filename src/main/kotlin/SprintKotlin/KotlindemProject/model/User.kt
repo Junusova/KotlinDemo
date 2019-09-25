@@ -12,7 +12,6 @@ import javax.validation.constraints.Size
 
 data class User(
 
-
   @Column(name = "email", nullable = false, unique = true)
   @Size(min = 3, max = 255)
   var email: String,
@@ -23,9 +22,8 @@ data class User(
   @Column(name = "password", nullable = false)
   private var password: String,
 
-  @Enumerated(EnumType.STRING)
-  @ElementCollection(fetch = FetchType.EAGER)
-  var roles: Set<UserRole>
+  @ManyToMany
+  var roles: Set<Role>
 
 ) : UserDetails, BaseEntity() {
 

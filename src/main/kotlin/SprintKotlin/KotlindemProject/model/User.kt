@@ -1,10 +1,12 @@
 package SprintKotlin.KotlindemProject.model
 
-import SprintKotlin.KotlindemProject.enums.UserRole
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.authority.AuthorityUtils
 import org.springframework.security.core.userdetails.UserDetails
-import javax.persistence.*
+import javax.persistence.Column
+import javax.persistence.Entity
+import javax.persistence.ManyToMany
+import javax.persistence.Table
 import javax.validation.constraints.Size
 
 @Entity

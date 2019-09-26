@@ -7,8 +7,6 @@ import javax.persistence.*
 @Table(name = "category")
 data class Category (
 
-
-  //I'm not sure with mappedBy
   @OneToMany(mappedBy ="category",fetch = FetchType.LAZY)
   var items: List<Items>,
 

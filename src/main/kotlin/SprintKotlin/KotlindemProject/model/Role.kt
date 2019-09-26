@@ -4,8 +4,8 @@ import javax.persistence.Entity
 import javax.persistence.ManyToMany
 import javax.persistence.Table
 
-@Table
-@Entity(name = "roles")
+@Entity
+@Table(name = "role")
 data class Role (
   val name: String,
 

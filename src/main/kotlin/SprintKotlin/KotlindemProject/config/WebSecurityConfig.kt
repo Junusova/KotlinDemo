@@ -1,5 +1,7 @@
 package SprintKotlin.KotlindemProject.config
 
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.context.annotation.Configuration
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
@@ -12,6 +14,8 @@ import javax.sql.DataSource
 @Configuration
 @EnableWebSecurity
 class WebSecurityConfig : WebSecurityConfigurerAdapter() {
+  @Qualifier("dataSource")
+  @Autowired
   private val dataSource: DataSource? = null
   @Throws(Exception::class)
   override fun configure(http: HttpSecurity) {
@@ -31,7 +35,7 @@ class WebSecurityConfig : WebSecurityConfigurerAdapter() {
   override fun configure(auth: AuthenticationManagerBuilder?) {
     auth?.jdbcAuthentication()?.
       dataSource(dataSource)?.
-      passwordEncoder(NoOpPasswordEncoder.getInstance())?.usersByUsernameQuery("select username, password, active from userme where username=? ")?.authoritiesByUsernameQuery("select u.username, ur.roles from userme u inner join user_role ur on u.id = ur.user_id where u.username=?")
+      passwordEncoder(NoOpPasswordEncoder.getInstance())?.usersByUsernameQuery("select email, password, active from userme where email=? ")?.authoritiesByUsernameQuery("select u.email, ur.roles from userme u inner join userme_roles ur on u.id = ur.users_id where u.email=?")
 
   }
 

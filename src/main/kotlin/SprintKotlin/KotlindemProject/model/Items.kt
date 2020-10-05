@@ -4,17 +4,18 @@ import java.math.BigDecimal
 import javax.persistence.*
 
 @Entity
-@Table(name = "customer")
-data class Customer(
+@Table(name = "items")
+data class Items(
 
-  @Column(name = "firstName")
-  var firstName: String,
+  @ManyToOne()
+  @JoinColumn(name = "category_id", nullable = false)
+  var category: Category,
 
-  @Column(name = "lastName")
-  var lastName: String,
+  @Column(name = "name")
+  var name: String,
 
   @Column(name = "amount")
-  var amount: Int,
+  var amount: BigDecimal,
 
   @Column(name = "price")
   var price: BigDecimal,
@@ -22,7 +23,7 @@ data class Customer(
   @Column(name = "description")
   var description: String,
 
-  @Column(name = "category")
-  var category: String
+  @Column(name = "is_active")
+  var isActive: Boolean
 
 ) : BaseEntity()
